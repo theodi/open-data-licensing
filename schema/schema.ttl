@@ -1,0 +1,96 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+
+#TEMPORARY: Need to sort out proper URL for schema
+@prefix odil:	<http://theodi.github.io/open-data-licensing/schema#> .
+
+############################################################################
+# General description of the ontology
+############################################################################
+
+<http://purl.org/linked-data/arts>
+    a owl:Ontology;
+    owl:versionInfo "0.1";
+    rdfs:label "Open Data Rights Statement Schema";
+    rdfs:comment "Provides an ontology for describing rights statements, e.g. licenses, copyright notices, attribution requirements, for Open Datasets.";
+    dct:created "2013-05-31"^^xsd:date;
+    dct:title "Open Data Rights Statement Schema"@en;
+    foaf:maker <http://www.ldodds.com#me>.
+
+<http://www.ldodds.com#me> a foaf:Person ;
+	foaf:name "Leigh Dodds" .
+
+############################################################################
+# Classes
+############################################################################
+
+odil:RightsStatement
+	a owl:Class;	
+    rdfs:label "Rights Statement"@en;
+    rdfs:comment """A description of the rights and terms of re-use for a dataset. A rights statement will include a reference to one or more licenses (covering the data and content domains), copyright notices, and attribution requirements."""@en;
+	rdfs:subClassOf dct:RightsStatement.
+
+odil:License
+	a owl:Class;	
+    rdfs:label "License"@en;
+    rdfs:comment """A legal document that describes the legal terms for re-use of some information. A license might apply to either content or data. It might also be a waiver document that indicates that the owner waives all rights they may have over the information."""@en;
+	rdfs:subClassOf dct:LicenseDocument;
+	owl:equivalentClass cc:License.
+
+############################################################################
+# Object Properties
+############################################################################
+
+odil:dataLicense
+	a owl:ObjectProperty;
+	rdfs:label "data license"@en;
+	rdfs:comment "Indicates which data license is applicable to the dataset(s) referencing a rights statement."@en;
+	rdfs:subPropertyOf dct:license;
+	rdfs:domain odil:RightsStatement;
+	rdfs:range odil:License.
+	
+odil:contentLicense
+	a owl:ObjectProperty;
+	rdfs:label "content license"@en;
+	rdfs:comment "Indicates which content license is applicable to the dataset(s) referencing a rights statement"@en;
+	rdfs:subPropertyOf dct:license;
+	rdfs:domain odil:RightsStatement;
+	rdfs:range odil:License.
+
+odil:rights
+	a owl:ObjectProperty;
+	rdfs:label "rights"@en;
+	rdfs:comment "associates a rights statement with a dataset"@en;
+	owl:equivalentProperty dct:rights;
+	rdfs:range odil:RightsStatement.
+
+############################################################################
+# Datatype Properties
+############################################################################
+
+odil:copyrightNotice
+	a owl:DatatypeProperty;
+	rdfs:label "copyright notice"@en;
+	rdfs:comment "The copyright notice associated with a rights statement. A notice must typically be preserved and displayed when acknowledging the source of some data"@en;    
+	rdfs:range rdfs:Literal;
+	rdfs:domain odil:RightsStatement.
+
+odil:attributionName
+	a owl:DatatypeProperty;
+	rdfs:label "attribution name"@en;
+	rdfs:comment "The name of the rights holder, to be used when attributing the publisher of a dataset"@en;    
+	rdfs:range rdfs:Literal;
+	rdfs:domain odil:RightsStatement.
+
+odil:attributionURL
+	a owl:DatatypeProperty;
+	rdfs:label "attribution url"@en;
+	rdfs:comment "The URL to be used when attributing a data source."@en;    
+	rdfs:range rdfs:Literal;
+	rdfs:domain odil:RightsStatement.
