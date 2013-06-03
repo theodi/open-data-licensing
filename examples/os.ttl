@@ -32,5 +32,5 @@
 		odil:contentLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
 		odil:copyrightNotice "Contains Ordnance Survey data © Crown copyright and database right 2013. Contains Royal Mail data © Royal Mail copyright and database right 2013. Contains National Statistics data © Crown copyright and database right 2013." ;
 		odil:attributionText "Ordnance Survey";
-		odil:attributionUrl "http://ordnancesurvey.co.uk"
+		odil:attributionURL "http://ordnancesurvey.co.uk"
     ].
