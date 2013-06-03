@@ -8,8 +8,7 @@
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix void: <http://rdfs.org/ns/void#> .
 
-#TEMPORARY: Need to sort out proper URL for schema
-@prefix odil:	<http://theodi.github.io/open-data-licensing/schema#> .
+@prefix odil:	<http://schema.theodi.org/open-data-licensing#> .
 
 #
 # The OS Open Data license is a derivative of the OGL. The text indicates that a specific

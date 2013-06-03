@@ -7,14 +7,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix cc: <http://creativecommons.org/ns#> .
 
-#TEMPORARY: Need to sort out proper URL for schema
-@prefix odil:	<http://theodi.github.io/open-data-licensing/schema#> .
+@prefix odil:	<http://schema.theodi.org/open-data-licensing#> .
 
 ############################################################################
 # General description of the ontology
 ############################################################################
 
-<http://theodi.github.io/open-data-licensing/schema>
+<http://schema.theodi.org/open-data-licensing/ns>
     a owl:Ontology;
     owl:versionInfo "0.1";
     rdfs:label "Open Data Rights Statement Schema";
