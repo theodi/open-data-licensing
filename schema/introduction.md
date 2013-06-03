@@ -1,13 +1,16 @@
 # Introduction
 
-Data published to the web should be accompanied by metadata that describes the dataset, its means of creation and, importantly, the rights available to potential re-users of that data. While legal requirements vary across juristictions, a statement of rights typically includes some or all of the following information:
+Data published to the web should always be accompanied by machine-readable metadata that describes the dataset, its means of creation and, importantly, a statement of the rights that relate to potential re-use of the data. 
+
+While legal requirements vary across juristictions, a statement of rights will typically include some or all of the following information:
 
 * A reference to a license or waiver that relates to re-use of the dataset
 * A reference to a license or waiver that relates to re-use of the contents of the dataset, e.g where that content is covered by copyright
 * Notices, e.g. copyright notices, that should be preserved by re-users
 * Guidance on a means of attributing the source of the data, e.g. when re-used in an application
+* Pointers to further information, e.g. further guidance on re-use or details on how to acquire additional rights
 
-The Open Data Rights Statement vocabulary is intended to support the publication of machine-readable rights statements. It builds on related work from the Dublin Core and Creative Commons communities. The vocabulary is intended to be used in a variety of contexts and complements ongoing efforts to improve the quality of machine-readable dataset metadata, e.g. as Linked Data (DCAT, VOID), as data distributions (Data Packages), or data published via Web APIs.
+The Open Data Rights Statement vocabulary is intended to support the publication of machine-readable rights statements. The vocabulary builds on related work from the Dublin Core and Creative Commons communities and is intended to complement ongoing efforts to improve the quality of machine-readable dataset metadata. It is expected that the vocabulary will be useful in a number of contexts, e.g. for Linked Data publishing ([DCAT](http://www.w3.org/TR/vocab-dcat/), [VoiD](http://www.w3.org/TR/void/)), dataset distribution ([Data Packages](http://www.dataprotocols.org/en/latest/data-packages.html)), as well as data published via web APIs.
 
 The following sections of the document provide more background on the vocabulary, including references to relevant related work.
 
@@ -26,7 +29,7 @@ These vocabularies provide some necessary foundations for publishing rights stat
 The key limitations with the existing vocabularies are:
 
 * There is no recognition of the need to separately license a database and its contents. Even outside of the EU, it is entirely possible that the content of a database is covered by a separate license to its structure. Where required there should be unambiguous ways to link to more than one license or waiver
-* An unclear distinction between descriptions of a re-usable license; a rights statement which might be apply to several datasets, and the specific rights associated with an individual dataset. This leads to some confusion around how best to publish attribution requirements, copyright notices, etc.
+* An unclear distinction between descriptions of a re-usable license; a rights statement which might apply to several datasets, and the specific rights associated with an individual dataset. This leads to some confusion around how best to publish attribution requirements, copyright notices, etc.
 
 The intention is that this vocabulary should allow data publisher to publish, as machine-readable metadata, the following information:
 
