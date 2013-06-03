@@ -16,8 +16,8 @@
 <http://schema.theodi.org/open-data-licensing#>
     a owl:Ontology;
     owl:versionInfo "0.1";
-    rdfs:label "Open Data Rights Statement Schema";
-    rdfs:comment "Provides an ontology for describing rights statements, e.g. licenses, copyright notices, attribution requirements, for Open Datasets.";
+    rdfs:label "Open Data Rights Statement Vocabulary";
+    rdfs:comment "Provides an vocabulary for describing rights statements, e.g. licenses, copyright notices, attribution requirements, for Open Datasets.";
     dct:created "2013-05-31"^^xsd:date;
     dct:title "Open Data Rights Statement Schema"@en;
     foaf:maker <http://www.ldodds.com#me>.
@@ -80,10 +80,10 @@ odil:copyrightNotice
 	rdfs:range rdfs:Literal;
 	rdfs:domain odil:RightsStatement.
 
-odil:attributionName
+odil:attributionText
 	a owl:DatatypeProperty;
-	rdfs:label "attribution name"@en;
-	rdfs:comment "The name of the rights holder, to be used when attributing the publisher of a dataset"@en;    
+	rdfs:label "attribution text"@en;
+	rdfs:comment "The text to use in an attribution link. This may be the name of the publisher or a reference to a community or group of contributors"@en;    
 	rdfs:range rdfs:Literal;
 	rdfs:domain odil:RightsStatement.
 
