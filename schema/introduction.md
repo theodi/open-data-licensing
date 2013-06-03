@@ -46,8 +46,5 @@ The vocabulary does not provide a definition of dataset. This is intentionally u
 
 Similarly, this vocabulary intentionally does not attempt to support the machine-readable description of the terms of a specific license. This is already adequately covered by the [ccRel](http://creativecommons.org/ns) vocabulary.
 
-## Diagram
-
-
 
 
