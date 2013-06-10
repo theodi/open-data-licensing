@@ -92,7 +92,10 @@ The github project that supports this vocabularly includes some [additional stan
 
 For clarity many of the examples below omit prefix definitions from RDF terms. The full set of prefixes used in the examples is given below:
 
-	TODO: prefixes
+    @prefix dcat: &http://www.w3.org/ns/dcat#> .
+    @prefix dct: &http://purl.org/dc/terms/> .
+    @prefix odrs: &http://schema.theodi.org/odrs#> .
+    @prefix rdfs: &http://www.w3.org/2000/01/rdf-schema#> .
 
 ### A Rights Statement with a single Licence
 
