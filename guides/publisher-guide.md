@@ -94,7 +94,7 @@ For clarity many of the examples below omit prefix definitions from RDF terms. T
 
 	TODO: prefixes
 
-### Single Licence
+### A Rights Statement with a single Licence
 
 The following example illustrates how to associate a rights statement with a DCAT dataset:
 
@@ -121,7 +121,7 @@ Note that in addition to the `dct:rights` property the example also includes a `
 
 However, as the next example shows, a Rights Statement allows for greater clarity when associating a dataset with multiple licences.
 
-### Multiple Licences
+### A Rights Statement including multiple Licences
 
 In some circumstances there are different rights that relate to a dataset (or database) as a whole, and the contents of that database. The following example illustrates how to relate a dataset to multiple licences one for the data domain and one for the content domain:
 
@@ -145,7 +145,7 @@ While those licences might often be used together, an alternative licence could 
 
 The ability to clearly distinguish between these different types of licences is an important part of the ODRS vocabulary.
 
-### Copyright Notices
+### Including Copyright Notices and User Guidelines
 
 The following example illustrates how to include a copyright notice as part of a Rights Statement. For example a dataset or its contents might be licensed under a Creative Commons licence, but the publisher still retains their copyright in the content. Creative Commons licences indicate that re-users should retain any notices that are provided by a publisher.
 
@@ -182,13 +182,78 @@ In some cases it may be more suitable to provide a link to a copyright statement
 
 The revised example also includes the `odrs:reuserGuidelines` property which can be used to provide further documentation for data re-users. This might be an FAQ or other user guide that provides a useful human-readable overview of the rights statement. In this example the same web page contains both user guidance and a copyright statement.
 
-### Rights Statements in RDFa
+### Publishing Rights Statements in RDFa
 
-	TODO: DIODD example
+ODRS metadata can easily be embedded into a web page using [RDFa](http://www.w3.org/TR/xhtml-rdfa-primer/). The following example illustrates how to 
+add a multi-licence rights statement as part of describing a DCAT dataset:
 
-### Rights Statements in JSON-LD
+    TODO: include HTML from this gist: https://gist.github.com/ldodds/5750746
 
-	TODO: DIODD example in JSON-LD
+The equivalent metadata in Turtle is given below:
+
+    @prefix dcat: &http://www.w3.org/ns/dcat#> .
+    @prefix dct: &http://purl.org/dc/terms/> .
+    @prefix odrs: &http://schema.theodi.org/odrs#> .
+    @prefix rdfs: &http://www.w3.org/2000/01/rdf-schema#> .
+
+    &http://gov.example.org/dataset/finances> a dcat:Dataset;
+        dct:license &http://reference.data.gov.uk/id/open-government-licence>;
+        dct:rights &https://dl.dropboxusercontent.com/u/2806337/diodd.html#rights>;
+        dct:title "Example Finances Dataset" .
+
+    &#rights> rdfs:label "Rights Statement";
+        odrs:attributionText "Example Department";
+        odrs:attributionURL &http://gov.example.org/dataset/finances>;
+        odrs:contentLicence &http://reference.data.gov.uk/id/open-government-licence>;
+        odrs:copyrightNotice "Contains public sector information licensed under the Open Government Licence v1.0";
+        odrs:dataLicence &http://reference.data.gov.uk/id/open-government-licence> .
+
+    &http://reference.data.gov.uk/id/open-government-licence> dct:title "UK Open Government Licence (OGL)" .
+
+### Publishing Rights Statements in JSON-LD
+
+[JSON-LD](http://json-ld.org/) supports publishing of Linked Data using JSON. The following example shows how the data shown in the previous example could be published as JSON-LD:
+
+    {
+      "@context": {
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dct": "http://purl.org/dc/terms/",
+        "odrs": "http://schema.theodi.org/odrs#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      },
+      "@graph": [
+        {
+          "@id": "http://reference.data.gov.uk/id/open-government-licence",
+          "dct:title": "UK Open Government Licence (OGL)"
+        },
+        {
+          "@id": "http://gov.example.org/dataset/finances",
+          "@type": "dcat:Dataset",
+          "dct:license": {
+            "@id": "http://reference.data.gov.uk/id/open-government-licence"
+          },
+          "dct:rights": {
+            "@id": "#rights"
+          },
+          "dct:title": "Example Finances Dataset"
+        },
+        {
+          "@id": "#rights",
+          "odrs:attributionText": "Example Department",
+          "odrs:attributionURL": {
+            "@id": "http://gov.example.org/dataset/finances"
+          },
+          "odrs:contentLicence": {
+            "@id": "http://reference.data.gov.uk/id/open-government-licence"
+          },
+          "odrs:copyrightNotice": "Contains public sector information licensed under the Open Government Licence v1.0",
+          "odrs:dataLicence": {
+            "@id": "http://reference.data.gov.uk/id/open-government-licence"
+          },
+          "rdfs:label": "Rights Statement"
+        }
+      ]
+    }
 
 ### Rights Statements in simple JSON
 
