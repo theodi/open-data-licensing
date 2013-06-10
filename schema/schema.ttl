@@ -80,7 +80,7 @@ may include more detail on attribution guidelines, a fuller copyright statement,
 	rdfs:range foaf:Document.
 
 odrs:attributionURL
-	a owl:DatatypeProperty;
+	a owl:ObjectProperty;
 	rdfs:label "attribution url"@en;
 	rdfs:comment "The URL to be used when attributing a data source."@en;    
 	rdfs:domain odrs:RightsStatement;
