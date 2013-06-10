@@ -1,0 +1,316 @@
+<html prefix="foaf: http://xmlns.com/foaf/0.1/
+              owl: http://www.w3.org/2002/07/owl#
+              rdfs: http://www.w3.org/2000/01/rdf-schema#
+              dct: http://purl.org/dc/terms/
+              rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+              xmlns: http://schema.theodi.org/odrs#">
+    <head>
+        <title><%= schema.ontology.title %></title>
+        <link href="bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body typeof="owl:Ontology" about="<%= schema.ontology.uri %>">    
+        <div class="container">
+            <div class="ontology">
+                <h1 property="dct:title"><%= schema.ontology.title %></h1>
+                <dl>
+                    <dt>Latest Version</dt>
+                    <dd><a href="<%= schema.ontology.uri %>"><%= schema.ontology.uri %></a></dd>
+                    
+                    <% if schema.ontology.created %>
+                        <dt>Created</dt>
+                        <dd property="dct:created"><%= schema.ontology.created %></dd>
+                    <% end %>
+                    
+                    <% if schema.ontology.modified %>		  	
+                        <dt>Last Modified</dt>
+                        <dd property="dct:modified"><%= schema.ontology.modified %></dd>
+                    <% end %>
+                    		  		  
+                    <dt>Authors</dt>
+                    <% schema.ontology.authors.each do |author| %>
+                        <dd property="foaf:maker" resource="<%= author.uri %>">
+                            <a href="<%= author.uri %>"><span property="foaf:name" typeof="foaf:Person" about="<%= author.uri %>"><%= author.name %></span></a>
+                        </dd>
+                    <% end %>
+                        
+                    <dt>Alternate Versions</dt>
+                    <dd><a href="index.ttl">Turtle</a></dd>
+                    
+		         </dl>
+		         
+                <span property="rdfs:comment"><%= schema.ontology.comment %></span>
+		         
+            </div>
+				
+		<% if introduction %>
+		  <%= introduction %>
+		<% end %>
+		
+		<div id="overview">
+            <h2>Overview Of Terms</h2>		
+			<p>An alphabetical index of the ontology terms, divided into classes and properties. All the terms are hyperlinked to their 
+			detailed description for quick reference.</p>
+			
+			<p><strong>Classes</strong>:
+            <% schema.list_classes().each do |key,val| %>
+			 | <a href="#class_<%= val.short_name %>"><%= val.short_name %></a>
+			<% end %>		
+			</p>
+			
+			<p><strong>Properties</strong>:
+			<% schema.list_properties().each do |key,val| %>
+			 | <a href="#prop_<%= val.short_name %>"><%= val.short_name %></a>
+			<% end %>
+			</p>				
+		</div>
+		
+		<div id="terms">
+			<h2>Ontology Terms</h2>
+		</div>
+		
+		<div id="classes">
+			<h3>Classes</h3>
+			
+	   		<%schema.list_classes().each do |t| %>	   			
+	   			<div typeof="owl:Class" about="<%= t[1].uri %>" class="term" id="class_<%= t[1].short_name %>">	   					   			
+	   				<h4>Class: <%= t[1].short_name %></h4>
+	   				<div class="row">
+	   					<div class="span2">
+	   					<h5>Overview</h5>
+	   					</div>
+	   					<div class="span10">
+		   				<table class="table">
+		   				<tr><td>Label</td><td><span property="rdfs:label"><%= t[1].label %></span></td></tr>
+		   				<tr><td>URI</td><td><code><%= t[1].uri %></code></td></tr>
+		   				<% if t[1].sub_class_of %>
+		   					<% if t[1].sub_class_of.class.to_s == "String" %>	   				
+		   						<tr><td>Has Parent Class</td>
+		   						 <td><a href="<%= t[1].sub_class_of %>">
+		   						 <span property="rdfs:subClassOf" resource="<%= t[1].sub_class_of %>"><%= t[1].sub_class_of %></span></a>
+		   						 </td></tr>
+		   					<% else %>
+		   						<tr><td>Has Parent Class</td><td><a href="#class_<%= t[1].sub_class_of.short_name %>">
+		   						<span property="rdfs:subClassOf" resource="<%= t[1].sub_class_of.uri %>"><%= t[1].sub_class_of.short_name %></span></a></td></tr>
+		   					<% end %>
+		   				<% end %>
+		   				<% if t[1].sub_classes.length > 0 %>
+							<tr>
+								<td>Sub-Classes</td>
+								<td>
+									<% t[1].sub_classes.each do |child| %>
+										<a href="#class_<%= child.short_name %>"><%= child.short_name %></a>
+									<% end %>
+								</td>
+							</tr>
+		   				<% end %>	   				
+		   				</table>	   		
+		   				</div>		   				
+					</div>		   	
+					<div class="row">
+						<div class="offset2 span10">
+			   				<p property="rdfs:comment"><%= t[1].comment %></p>
+			   				<% if t[1].see_alsos.length > 0 %>
+				   				<p><em>Further Reading:</em></p>
+				   				<ul>	   			
+			   						<% t[1].see_alsos.each do |link| %>
+			   						<li><a href="<%= link %>"><%= link %></a></li>
+			   						<% end %>
+			   					</ul>
+			   				<% end %>
+						</div>			   				
+	   				</div>
+	   			</div>
+	   			<div class="row">
+	   				<div class="offset10">
+	   					<a href="#overview">Back to Overview</a>
+					</div>	   					
+	   			</div>
+	   			<hr>
+	  		<%end%>		
+		
+		</div>
+		
+		<div id="properties">
+			<h3>Object Properties</h3>
+	
+	   		<% schema.list_object_properties().each do |t| %>
+	   			<div typeof="owl:ObjectProperty" about="<%= t[1].uri %>" class="term" id="prop_<%= t[1].short_name %>">
+	   				<h4>Property: <%= t[1].short_name %></h4>
+	   				<div class="row">
+	   					<div class="span2">
+	   					<h5>Overview</h5>
+	   					</div>
+	   					<div class="span10">
+			   				
+			   				<table class="table">
+			   					<tr><td>Label</td><td><span property="rdfs:label"><%= t[1].label %></span></td></tr>
+			   					<tr><td>URI</td><td><code><%= t[1].uri %></code></td></tr>	   					
+				   				<% if t[1].sub_property_of %>
+				   					<% if t[1].sub_property_of.class.to_s == "String" %>	   				
+				   						<tr><td>Has Parent Property</td><td>
+				   						   <a href="<%= t[1].sub_property_of %>">
+				   						   <span property="rdfs:subPropertyOf" resource="<%= t[1].sub_property_of %>"><%= t[1].sub_property_of %></span></a></td></tr>
+				   					<% else %>
+				   						<tr><td>Has Parent Property</td><td><a href="#prop_<%= t[1].sub_property_of.short_name %>">
+				   						<span property="rdfs:subPropertyOf" resource="%= t[1].sub_property_of.uri %>"><%= t[1].sub_property_of.short_name %></span></a></td></tr>
+				   					<% end %>
+				   				<% end %>
+				   				<% if t[1].sub_properties.length > 0 %>
+									<tr>
+										<td>Sub-Properties</td>
+										<td>
+											<% t[1].sub_properties.each do |child| %>
+												<a href="#class_<%= child.short_name %>"><%= child.short_name %></a>
+											<% end %>
+										</td>
+									</tr>
+				   				<% end %>		   				
+				   				<% if t[1].range.length > 0 %>
+				   					<tr><td>Range</td>
+				   					<td>
+				   					<% t[1].range.each do |cls| %>
+				   						   <% if cls.class.to_s == "String" %>
+				   						       <a href="<%= cls %>"><span property="rdfs:range" resource="<%= cls %>"><%= cls %></span></a>
+				   						   <% else %>
+				   						       <a href="#class_<%= cls.short_name %>">
+				   						       <span property="rdfs:domain" resource="<%= cls.uri %>"><%= cls.short_name %></a>
+				   						   <% end %>
+				   					<% end %>		   				
+				   					</td>
+				   					</tr>
+				   				<% end %>
+				   				<% if t[1].domain.length > 0 %>
+				   					<tr><td>Domain</td>
+				   					<td>
+				   					<% t[1].domain.each do |cls| %>
+                                           <% if cls.class.to_s == "String" %>
+                                               <a href="<%= cls %>"><span property="rdfs:domain" resource="<%= cls %>"><%= cls %></span></a>
+                                           <% else %>
+                                               <a href="#class_<%= cls.short_name %>">
+                                               <span property="rdfs:domain" resource="<%= cls.uri %>"><%= cls.short_name %></a>
+                                           <% end %>		   						   
+				   					<% end %>		   				
+				   					</td>
+				   					</tr>
+				   				<% end %>		   				
+			   				</table>	   				
+		   				</div>		   				
+					</div>		   	
+					<div class="row">
+						<div class="offset2 span10">
+		   				
+			   				<p property="rdfs:comment"><%= t[1].comment %></p>
+			   				<% if t[1].see_alsos.length > 0 %>
+				   				<p><em>Further Reading:</em></p>
+				   				<ul>	   			
+			   						<% t[1].see_alsos.each do |link| %>
+			   						<li><a href="<%= link %>"><%= link %></a></li>
+			   						<% end %>
+			   					</ul>
+			   				<% end %>
+	   				</div>
+	   			</div>
+	   			<div class="row">
+	   				<div class="offset10">
+	   					<a href="#overview">Back to Overview</a>
+					</div>	   					
+	   			</div>
+	   			<hr>
+	  		<%end%>		
+		
+					
+			<h3>Datatype Properties</h3>
+	
+	   		<%schema.list_datatype_properties().each do |t| %>
+	   			<div class="term" typeof="owl:DatatypeProperty" about="<%= t[1].uri %>" id="prop_<%= t[1].short_name %>">
+	   				<h4>Property: <%= t[1].short_name %></h4>
+	   				<div class="row">
+	   					<div class="span2">
+	   					<h5>Overview</h5>
+	   					</div>
+	   					<div class="span10">
+		   				
+		   				<table class="table">
+							<tr><td>Label</td><td><span property="rdfs:label"><%= t[1].label %></span></td></tr>
+		   					<tr><td>URI</td><td><code><%= t[1].uri %></code></td></tr>							   				
+                                <% if t[1].sub_property_of %>
+                                    <% if t[1].sub_property_of.class.to_s == "String" %>                    
+                                        <tr><td>Has Parent Property</td><td>
+                                           <a href="<%= t[1].sub_property_of %>">
+                                           <span property="rdfs:subPropertyOf" resource="<%= t[1].sub_property_of %>"><%= t[1].sub_property_of %></span></a></td></tr>
+                                    <% else %>
+                                        <tr><td>Has Parent Property</td><td><a href="#prop_<%= t[1].sub_property_of.short_name %>">
+                                        <span property="rdfs:subPropertyOf" resource="%= t[1].sub_property_of.uri %>"><%= t[1].sub_property_of.short_name %></span></a></td></tr>
+                                    <% end %>
+                                <% end %>
+			   				<% if t[1].sub_properties.length > 0 %>
+								<tr>
+									<td>Sub-Properties</td>
+									<td>
+										<% t[1].sub_properties.each do |child| %>
+											<a href="#class_<%= child.short_name %>"><%= child.short_name %></a>
+										<% end %>
+									</td>
+								</tr>
+			   				<% end %>		   				
+                                <% if t[1].range.length > 0 %>
+                                    <tr><td>Range</td>
+                                    <td>
+                                    <% t[1].range.each do |cls| %>
+                                           <% if cls.class.to_s == "String" %>
+                                               <a href="<%= cls %>"><span property="rdfs:range" resource="<%= cls %>"><%= cls %></span></a>
+                                           <% else %>
+                                               <a href="#class_<%= cls.short_name %>">
+                                               <span property="rdfs:domain" resource="<%= cls.uri %>"><%= cls.short_name %></a>
+                                           <% end %>
+                                    <% end %>                       
+                                    </td>
+                                    </tr>
+                                <% end %>
+                                <% if t[1].domain.length > 0 %>
+                                    <tr><td>Domain</td>
+                                    <td>
+                                    <% t[1].domain.each do |cls| %>
+                                           <% if cls.class.to_s == "String" %>
+                                               <a href="<%= cls %>"><span property="rdfs:domain" resource="<%= cls %>"><%= cls %></span></a>
+                                           <% else %>
+                                               <a href="#class_<%= cls.short_name %>">
+                                               <span property="rdfs:domain" resource="<%= cls.uri %>"><%= cls.short_name %></a>
+                                           <% end %>                                   
+                                    <% end %>                       
+                                    </td>
+                                    </tr>
+                                <% end %>   	
+		   				</table>	   				
+		   				</div>		   				
+					</div>		   	
+					<div class="row">
+						<div class="offset2 span10">
+			   				<p property="rdfs:comment"><%= t[1].comment %></p>
+			   				<% if t[1].see_alsos.length > 0 %>
+				   				<p><em>Further Reading:</em></p>
+				   				<ul>	   			
+			   						<% t[1].see_alsos.each do |link| %>
+			   						<li><a href="<%= link %>"><%= link %></a></li>
+			   						<% end %>
+			   					</ul>
+			   				<% end %>
+	   					</div>
+	   			</div>
+	   			<div class="row">
+	   				<div class="offset10">
+	   					<a href="#overview">Back to Overview</a>
+					</div>	   					
+	   			</div>
+	   			<hr>	   			
+	  		<%end%>		
+				
+		</div>
+	
+	</div>
+
+	<script src="jquery.js"></script> 		
+	<script src="bootstrap.min.js"></script>
+	
+  </body>	
+</html>
