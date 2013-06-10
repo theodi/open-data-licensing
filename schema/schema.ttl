@@ -16,10 +16,11 @@
 <http://schema.theodi.org/odrs#>
     a owl:Ontology;
     owl:versionInfo "0.1";
+	dct:title "Open Data Rights Statement Vocabulary"@en;
     rdfs:label "Open Data Rights Statement Vocabulary";
-    rdfs:comment "Provides an vocabulary for describing rights statements, e.g. licenses, copyright notices, attribution requirements, for Open Datasets.";
+    rdfs:comment "A vocabulary that supports the publication of Open Data by providing the means to capture machine-readable "rights statements", e.g. the licensing information, copyright notices and attribution requirements that are associated with the publication and re-use of a dataset.";
     dct:created "2013-05-31"^^xsd:date;
-    dct:title "Open Data Rights Statement Schema"@en;
+	dct:modified "2013-06-10"^^xsd:date;   
     foaf:maker <http://www.ldodds.com#me>.
 
 <http://www.ldodds.com#me> a foaf:Person ;
@@ -32,13 +33,14 @@
 odrs:RightsStatement
 	a owl:Class;	
     rdfs:label "Rights Statement"@en;
-    rdfs:comment """A description of the rights and terms of re-use for a dataset. A rights statement will include a reference to one or more licenses (covering the data and content domains), copyright notices, and attribution requirements."""@en;
+    rdfs:comment """A description of the rights and terms of re-use for a dataset. A rights statement will include a reference to one or more licenses copyright notices, and attribution requirements. Where a Rights Statement refers to several licenses the intention is that these should separately apply to the data and content associated with the dataset. An individual Rights Statement may be specific to a dataset or could be applied to a 
+number of datasets published by the same organisation or person, where the rights associated with each dataset are identical."""@en;
 	rdfs:subClassOf dct:RightsStatement.
 
 odrs:License
 	a owl:Class;	
     rdfs:label "License"@en;
-    rdfs:comment """A legal document that describes the legal terms for re-use of some information. A license might apply to either content or data. It might also be a waiver document that indicates that the owner waives all rights they may have over the information."""@en;
+    rdfs:comment """A legal document that describes the legal terms for re-use of some information. A license might be applicable to content, data, or both. This definition of license used here is deliberately loose, and is intended to also cover waiver documents that indicate that the owner waives all rights over some information, e.g. public domain dedications."""@en;
 	rdfs:subClassOf dct:LicenseDocument;
 	owl:equivalentClass cc:License.
 
@@ -65,7 +67,7 @@ odrs:contentLicense
 odrs:rights
 	a owl:ObjectProperty;
 	rdfs:label "rights"@en;
-	rdfs:comment "associates a rights statement with a dataset"@en;
+	rdfs:comment "Associates a rights statement with a dataset. This property is equivalent to the Dublin Core rights property"@en;
 	owl:equivalentProperty dct:rights;
 	rdfs:range odrs:RightsStatement.
 
