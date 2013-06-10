@@ -79,6 +79,13 @@ may include more detail on attribution guidelines, a fuller copyright statement,
     rdfs:domain odrs:RightsStatement;
 	rdfs:range foaf:Document.
 
+odrs:attributionURL
+	a owl:DatatypeProperty;
+	rdfs:label "attribution url"@en;
+	rdfs:comment "The URL to be used when attributing a data source."@en;    
+	rdfs:domain odrs:RightsStatement;
+	rdfs:range foaf:Document.
+
 ############################################################################
 # Datatype Properties
 ############################################################################
@@ -97,9 +104,3 @@ odrs:attributionText
 	rdfs:range rdfs:Literal;
 	rdfs:domain odrs:RightsStatement.
 
-odrs:attributionURL
-	a owl:DatatypeProperty;
-	rdfs:label "attribution url"@en;
-	rdfs:comment "The URL to be used when attributing a data source."@en;    
-	rdfs:range rdfs:Literal;
-	rdfs:domain odrs:RightsStatement.
