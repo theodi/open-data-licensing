@@ -18,7 +18,7 @@
     owl:versionInfo "0.1";
 	dct:title "Open Data Rights Statement Vocabulary"@en;
     rdfs:label "Open Data Rights Statement Vocabulary";
-    rdfs:comment "A vocabulary that supports the publication of Open Data by providing the means to capture machine-readable "rights statements", e.g. the licensing information, copyright notices and attribution requirements that are associated with the publication and re-use of a dataset.";
+    rdfs:comment """A vocabulary that supports the publication of Open Data by providing the means to capture machine-readable "rights statements", e.g. the licensing information, copyright notices and attribution requirements that are associated with the publication and re-use of a dataset.""";
     dct:created "2013-05-31"^^xsd:date;
 	dct:modified "2013-06-10"^^xsd:date;   
     foaf:maker <http://www.ldodds.com#me>.
@@ -74,8 +74,8 @@ odrs:rights
 odrs:reuserGuidelines
 	a owl:ObjectProperty;
 	rdfs:label "rights"@en;
-	rdfs:comment "Link to a document that provides guidelines for re-users of data that is covered by a specific rights statement. The guidelines 
-may include more detail on attribution guidelines, a fuller copyright statement, and general guidance on how the data might be re-used"@en;
+	rdfs:comment """Link to a document that provides guidelines for re-users of data that is covered by a specific rights statement. The guidelines 
+may include more detail on attribution guidelines, a fuller copyright statement, and general guidance on how the data might be re-used"""@en;
     rdfs:domain odrs:RightsStatement;
 	rdfs:range foaf:Document.
 
