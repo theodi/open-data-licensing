@@ -8,7 +8,7 @@
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix void: <http://rdfs.org/ns/void#> .
 
-@prefix odil:	<http://schema.theodi.org/open-data-licensing#> .
+@prefix odrs:	<http://schema.theodi.org/odrs#> .
 
 #
 # The OS Open Data license is a derivative of the OGL. The text indicates that a specific
@@ -27,10 +27,10 @@
 	dct:title "Ordnance Survey Linked Data" ;
     dct:license <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf> ;
     dct:rights [
-		a odil:RightsStatement;
-		odil:dataLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
-		odil:contentLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
-		odil:copyrightNotice "Contains Ordnance Survey data © Crown copyright and database right 2013. Contains Royal Mail data © Royal Mail copyright and database right 2013. Contains National Statistics data © Crown copyright and database right 2013." ;
-		odil:attributionText "Ordnance Survey";
-		odil:attributionURL "http://ordnancesurvey.co.uk"
+		a odrs:RightsStatement;
+		odrs:dataLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
+		odrs:contentLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
+		odrs:copyrightNotice "Contains Ordnance Survey data © Crown copyright and database right 2013. Contains Royal Mail data © Royal Mail copyright and database right 2013. Contains National Statistics data © Crown copyright and database right 2013." ;
+		odrs:attributionText "Ordnance Survey";
+		odrs:attributionURL "http://ordnancesurvey.co.uk"
     ].
