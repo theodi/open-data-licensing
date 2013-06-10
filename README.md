@@ -36,6 +36,15 @@ Currently the actual schema documentation is generated using [dowl](https://gith
 The project `Rakefile` uses the tool to generate the documentation, 
 which is then published to the [ODI schema project](https://github.com/theodi/schemas) for live hosting.
 
+To publish the schema:
+
+1. `git pull` this project to local directory
+2. `git pull` the [schemas](https://github.com/theodi/schemas) project into parallel directory
+3. Ensure you have `dowl` installed, e.g.: `sudo geml install dowl`
+4. Make necessary changes to the schema or documentation
+5. Run `rake publish` this will generate the documentation into `schemas/odrs`
+6. Commit the updated docs into the schemas project, and `git push`
+
 ## Pointers
 
 * [Related Work](https://github.com/theodi/open-data-licensing/wiki/Related-Work)
