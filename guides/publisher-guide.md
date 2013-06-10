@@ -199,19 +199,19 @@ The equivalent metadata in Turtle is given below:
     @prefix odrs: &http://schema.theodi.org/odrs#> .
     @prefix rdfs: &http://www.w3.org/2000/01/rdf-schema#> .
 
-    &http://gov.example.org/dataset/finances> a dcat:Dataset;
+    <http://gov.example.org/dataset/finances> a dcat:Dataset;
         dct:license &http://reference.data.gov.uk/id/open-government-licence>;
         dct:rights &https://dl.dropboxusercontent.com/u/2806337/diodd.html#rights>;
         dct:title "Example Finances Dataset" .
 
-    &#rights> rdfs:label "Rights Statement";
+    <#rights> rdfs:label "Rights Statement";
         odrs:attributionText "Example Department";
         odrs:attributionURL &http://gov.example.org/dataset/finances>;
         odrs:contentLicence &http://reference.data.gov.uk/id/open-government-licence>;
         odrs:copyrightNotice "Contains public sector information licensed under the Open Government Licence v1.0";
         odrs:dataLicence &http://reference.data.gov.uk/id/open-government-licence> .
 
-    &http://reference.data.gov.uk/id/open-government-licence> dct:title "UK Open Government Licence (OGL)" .
+    <http://reference.data.gov.uk/id/open-government-licence> dct:title "UK Open Government Licence (OGL)" .
 
 ### Publishing Rights Statements in JSON-LD
 
