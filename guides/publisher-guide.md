@@ -8,7 +8,9 @@ A separate document, the [Re-users Guide to the Open Data Rights Statement Vocab
 
 ## Vocabulary Overview
 
-There are three key concepts required to understand the Open Data Rights Statement (ODRS) Vocabulary: _Datasets_, _Rights Statements_ and _Licenses_.
+There are three key concepts required to understand the Open Data Rights Statement (ODRS) Vocabulary: _Datasets_, _Rights Statements_ and _Licences_.
+
+### Datasets
 
 The vocabulary deliberates avoids providing a single definition of a dataset, this allows it to be freely used alongside other vocabularies and in a variety of data publishing contexts. However for the purposes of this document, the [Data Catalog Vocabulary](http://www.w3.org/TR/vocab-dcat/#class-dataset) (DCAT) provides a useful working [definition of a dataset](http://www.w3.org/TR/vocab-dcat/#class-dataset):
 
@@ -16,26 +18,28 @@ The vocabulary deliberates avoids providing a single definition of a dataset, th
 
 On intended use of the ODRS vocabulary is to provide a more detailed description of the rights associated with a Dataset described using the DCAT vocabulary.
 
-A _Dataset_ is usually associated with a _License_. The ODRS vocabulary uses a broad definition of license which is intended to cover any legal document that describe re-use rights up to an including a complete waiver of rights (e.g. a public domain dedication):
+### Licences
 
->A legal document that describes the legal terms for re-use of some information. A license might apply to either content or data. It might also be a waiver document that indicates that the owner waives all rights they may have over the information.
+A _Dataset_ is usually associated with a _Licence_. The ODRS vocabulary uses a broad definition of licence which is intended to cover any legal document that describe re-use rights up to an including a complete waiver of rights (e.g. a public domain dedication):
 
-The ODRS vocabulary does not provide a machine-readable description of licensing terms. The Creative Commons vocabulary (ccRel) provides the necessary terms for describing this aspect of licensing. ODRS is instead focused on describing _Rights Statements_ which are used to describe the application of a _License_ to a _Dataset_.
+>A legal document that describes the legal terms for re-use of some information. A licence might apply to either content or data. It might also be a waiver document that indicates that the owner waives all rights they may have over the information.
 
-In some juristictions, particularly the EU, a dataset might actually have several licenses associated with it:
+The ODRS vocabulary does not provide a machine-readable description of licensing terms. The Creative Commons vocabulary (ccRel) provides the necessary terms for describing this aspect of licensing. ODRS is instead focused on describing _Rights Statements_ which are used to describe the application of a _Licence_ to a _Dataset_.
 
-* A Dataset License, e.g. the Open Database License, that covers reuse of the dataset
-* A Content License, e.g. the Open Database Content License, that covers re-use of the contents of a dataset
+In some juristictions, particularly the EU, a dataset might actually have several licences associated with it:
 
-A _Rights Statement_ is a resource that amongst other things, describes the relationship between a _Dataset_ and its _Licenses_. A statement of rights will typically include some or all of the following information:
+* A Dataset Licence, e.g. the Open Database Licence, that covers reuse of the dataset
+* A Content Licence, e.g. the Open Database Content Licence, that covers re-use of the contents of a dataset
 
-* A reference to a Dataset License
-* A reference to a Content License (where applicable)
+A _Rights Statement_ is a resource that amongst other things, describes the relationship between a _Dataset_ and its _Licences_. A statement of rights will typically include some or all of the following information:
+
+* A reference to a Dataset Licence
+* A reference to a Content Licence (where applicable)
 * Notices, e.g. copyright notices, that should be preserved by re-users
 * Guidance on a means of attributing the source of the data, e.g. when re-used in an application
 * Pointers to further information, e.g. further guidance on re-use or details on how to acquire additional rights
 
-The description of a License, such as the UK Open Government License, remains unchanged no matter how it is used or applied by an organisation. It is the Rights Statement that captures the context of its re-use by an organisation, including descriptions of relevant notices, attribution guidance and other relevant relationships.
+The description of a Licence, such as the UK Open Government Licence, remains unchanged no matter how it is used or applied by an organisation. It is the Rights Statement that captures the context of its re-use by an organisation, including descriptions of relevant notices, attribution guidance and other relevant relationships.
 
 A Rights Statement might apply to an individual Dataset. But it could equally be applied to several Datasets, e.g. if an organization publishes data under a consistent set of rights.
 
@@ -46,7 +50,7 @@ Publishers often want to be acknowledged for producing and publishing data. Data
 * Attribution -- giving credit to the creator and/or maintainer of a dataset
 * Citation -- linking to a source dataset that has been used in some analysis or is a component of an aggregated dataset
 
-Many communities have existing norms around both attribution and citation. Many licenses allow publishers to require attribution when a dataset is re-used, but it can be unclear how this should be achieved.
+Many communities have existing norms around both attribution and citation. Many licences allow publishers to require attribution when a dataset is re-used, but it can be unclear how this should be achieved.
 
 Citation usually involves linking to the individual dataset, or version of a dataset, that has been used. Citation use cases are already well supported by existing dataset metadata vocabularies, as they typically cover titles, versioning information (including publication dates), dataset URLs, download locations, etc.
 
@@ -71,7 +75,7 @@ For clarity many of the examples below omit prefix definitions from RDF terms. T
 
 	TODO: prefixes
 
-### Single License
+### Single Licence
 
 The following example illustrates how to associate a rights statement with a DCAT dataset:
 
@@ -84,17 +88,17 @@ The following example illustrates how to associate a rights statement with a DCA
 	:example1-rights-statement
 		a odrs:RightsStatement;
 		rdfs:label "Rights relating to re-use of the Court Cases Dataset" ;
-		odrs:dataLicense <http://reference.data.gov.uk/id/open-government-licence> ;
+		odrs:dataLicence <http://reference.data.gov.uk/id/open-government-licence> ;
 		odrs:attributionText "Ministry of Justice" ;
 		odrs:attributionURL <https://www.gov.uk/government/organisations/ministry-of-justice>
 	   
-The rights statement is associated with its dataset using the Dublin Core `dct:rights` relationship. The Rights Statement for the dataset has a label and several properties from the ODRS vocabulary. The `odrs:dataLicense` property indicates which license covers the re-use of the dataset, in this case it refers to the UK [Open Government License](http://www.nationalarchives.gov.uk/doc/open-government-licence/). As part of the rights statement, the publisher of the dataset has provided the text and URL that re-users can use to attribute the publisher.
+The rights statement is associated with its dataset using the Dublin Core `dct:rights` relationship. The Rights Statement for the dataset has a label and several properties from the ODRS vocabulary. The `odrs:dataLicence` property indicates which licence covers the re-use of the dataset, in this case it refers to the UK [Open Government Licence](http://www.nationalarchives.gov.uk/doc/open-government-licence/). As part of the rights statement, the publisher of the dataset has provided the text and URL that re-users can use to attribute the publisher.
 
-In addition to the `dct:rights` property the dataset has also been directly associated with the Open Government License via the Dublin Core `dct:license` property. This property is already in relatively common use for relating datasets with their licenses and it is recommended that publishers include it for compatibility with existing applications. However, as the next example shows, a Rights Statement allows for greater clarity when associating a dataset with both a data and a content license.
+In addition to the `dct:rights` property the dataset has also been directly associated with the Open Government Licence via the Dublin Core `dct:license` property. This property is already in relatively common use for relating datasets with their licences and it is recommended that publishers include it for compatibility with existing applications. However, as the next example shows, a Rights Statement allows for greater clarity when associating a dataset with both a data and a content licence.
 
-### Multiple Licenses
+### Multiple Licences
 
-In some circumstances there are different rights that relate to a dataset (or database) as a whole, and the contents of that database. The following example illustrates how to relate a dataset to multiple licenses one for the data domain and one for the content domain:
+In some circumstances there are different rights that relate to a dataset (or database) as a whole, and the contents of that database. The following example illustrates how to relate a dataset to multiple licences one for the data domain and one for the content domain:
 
 	:example2
 		a dcat:Dataset ;
@@ -105,16 +109,16 @@ In some circumstances there are different rights that relate to a dataset (or da
 	:example2-rights-statement
 		a odrs:RightsStatement;
 		rdfs:label "Rights relating to re-use of the Open Products Dataset" ;
-		odrs:dataLicense <http://opendatacommons.org/licenses/odbl/1.0/> ;
-		odrs:contentLicense <http://opendatacommons.org/licenses/dbcl/1.0/> ;
+		odrs:dataLicence <http://opendatacommons.org/licenses/odbl/1.0/> ;
+		odrs:contentLicence <http://opendatacommons.org/licenses/dbcl/1.0/> ;
 		odrs:attributionText "the Open Products community" ;
 		odrs:attributionURL <http://example.org/open-products>
 
-The two licenses are distinguished through the use of the `odrs:dataLicense` and `odrs:contentLicense` properties. In this example the properties refer to the [Open Database License](http://opendatacommons.org/licenses/odbl/) and the [Open Database Content License](http://opendatacommons.org/licenses/dbcl/). In other scenarios the content of a database might be licensed under a Creative Commons License.
+The two licences are distinguished through the use of the `odrs:dataLicence` and `odrs:contentLicence` properties. In this example the properties refer to the [Open Database Licence](http://opendatacommons.org/licenses/odbl/) and the [Open Database Content License](http://opendatacommons.org/licenses/dbcl/). In other scenarios the content of a database might be licensed under a Creative Commons Licence.
 
 ### Copyright Notices
 
-The following example illustrates how to include a copyright notice as part of a Rights Statement. For example a dataset or its contents might be licensed under a Creative Commons license, but the publisher still retains their copyright in the content. Creative Commons licenses indicate that re-users should retain any notices that are provided by a publisher.
+The following example illustrates how to include a copyright notice as part of a Rights Statement. For example a dataset or its contents might be licensed under a Creative Commons licence, but the publisher still retains their copyright in the content. Creative Commons licences indicate that re-users should retain any notices that are provided by a publisher.
 
 The ODRS vocabulary captures copyright information separately to attribution text, making it easier for applications to extract and display the relevant information.
 
@@ -128,8 +132,8 @@ The following example illustrates how the Ordnance Survey Open Data might have b
 
 	:example3-rights-statement
 		a odil:RightsStatement;
-		odil:dataLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
-		odil:contentLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
+		odil:dataLicence <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
+		odil:contentLicence <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
 		odil:copyrightNotice "Contains Ordnance Survey data © Crown copyright and database right 2013. Contains Royal Mail data © Royal Mail copyright and database right 2013. Contains National Statistics data © Crown copyright and database right 2013." ;
 		odil:attributionText "Ordnance Survey";
 		odil:attributionURL "http://ordnancesurvey.co.uk".
@@ -148,8 +152,8 @@ The Rights Statement includes a `odil:copyrightNotice` property in addition to t
 
 	{
 		"rights": {
-			"dataLicense": "...",
-			"contentLicense": "...",
+			"dataLicence": "...",
+			"contentLicence": "...",
 			"copyrightNotice": "...",
 			"attributionText": "...",
 			"attributionURL": "..."
