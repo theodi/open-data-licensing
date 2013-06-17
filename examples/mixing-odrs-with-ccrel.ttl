@@ -1,0 +1,24 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrs: <http://schema.theodi.org/odrs#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+_:example4
+    a dcat:Dataset ;
+    dct:title "Dataset with Custom License" ;
+    dct:rights _:example4-rights-statement ;
+    dct:license _:example4-license .
+
+_:example4-rights-statement
+	a odrs:RightsStatement ;
+    rdfs:label "Rights Statement referencing our custom license" ;
+    odrs:dataLicense _:example4-license .
+
+_:example4-license
+    a odrs:License, cc:License;
+    rdfs:label "Custom Data License";
+    cc:legalcode <http://example.org/legal/custom-license> ;
+    cc:permits cc:DerivativeWorks, cc:Distribtion, cc:Reproduction ;
+    cc:requires cc:Notice , cc:ShareAlike .
+
