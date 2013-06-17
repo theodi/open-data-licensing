@@ -333,16 +333,16 @@ The equivalent metadata in Turtle is given below:
     @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
     <http://gov.example.org/dataset/finances> a dcat:Dataset;
-        dct:license &http://reference.data.gov.uk/id/open-government-licence>;
-        dct:rights &#rights>;
+        dct:license <http://reference.data.gov.uk/id/open-government-licence>;
+        dct:rights <#rights>;
         dct:title "Example Finances Dataset" .
 
     <#rights> rdfs:label "Rights Statement";
         odrs:attributionText "Example Department";
-        odrs:attributionURL &http://gov.example.org/dataset/finances>;
-        odrs:contentLicense &http://reference.data.gov.uk/id/open-government-licence>;
+        odrs:attributionURL <http://gov.example.org/dataset/finances>;
+        odrs:contentLicense <http://reference.data.gov.uk/id/open-government-licence>;
         odrs:copyrightNotice "Contains public sector information licensed under the Open Government Licence v1.0";
-        odrs:dataLicense &http://reference.data.gov.uk/id/open-government-licence> .
+        odrs:dataLicense <http://reference.data.gov.uk/id/open-government-licence> .
 
     <http://reference.data.gov.uk/id/open-government-licence> dct:title "UK Open Government Licence (OGL)" .
 
