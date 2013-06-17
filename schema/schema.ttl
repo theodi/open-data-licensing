@@ -37,9 +37,9 @@ odrs:RightsStatement
 number of datasets published by the same organisation or person, where the rights associated with each dataset are identical."""@en;
     rdfs:subClassOf dct:RightsStatement.
 
-odrs:Licence
+odrs:License
     a owl:Class;    
-    rdfs:label "Licence"@en;
+    rdfs:label "License"@en;
     rdfs:comment """A legal document that describes the legal terms for re-use of some information. A licence might be applicable to content, data, or both. This definition of licence used here is deliberately loose, and is intended to also cover waiver documents that indicate that the owner waives all rights over some information, e.g. public domain dedications."""@en;
     rdfs:subClassOf dct:LicenseDocument;
     owl:equivalentClass cc:License.
@@ -48,21 +48,21 @@ odrs:Licence
 # Object Properties
 ############################################################################
 
-odrs:dataLicence
+odrs:dataLicense
     a owl:ObjectProperty;
-    rdfs:label "data licence"@en;
+    rdfs:label "data license"@en;
     rdfs:comment "Indicates which data licence is applicable to the dataset(s) referencing a rights statement."@en;
     rdfs:subPropertyOf dct:license;
     rdfs:domain odrs:RightsStatement;
-    rdfs:range odrs:Licence.
+    rdfs:range odrs:License.
     
-odrs:contentLicence
+odrs:contentLicense
     a owl:ObjectProperty;
-    rdfs:label "content licence"@en;
+    rdfs:label "content license"@en;
     rdfs:comment "Indicates which content licence is applicable to the dataset(s) referencing a rights statement"@en;
     rdfs:subPropertyOf dct:license;
     rdfs:domain odrs:RightsStatement;
-    rdfs:range odrs:Licence.
+    rdfs:range odrs:License.
 
 odrs:rights
     a owl:ObjectProperty;
