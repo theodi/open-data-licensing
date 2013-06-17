@@ -1,6 +1,6 @@
 # Publisher Guide to the Open Data Rights Statement Vocabulary
 
-This guide illustrates how to publish machine-readable rights statements using the [Open Data Rights Statement vocabulary](http://schema.theodi.org/open-data-licensing/) (ODRS). 
+This guide illustrates how to publish machine-readable rights statements using the [Open Data Rights Statement vocabulary](http://schema.theodi.org/odrs/) (ODRS). 
 
 Data published to the web should always be accompanied by machine-readable metadata that describes the dataset, its means of creation and, importantly, a statement of the rights that relate to potential re-use of the data. A clear statement of rights can ensure that data re-users fully understand the potential for re-use of a dataset, whether it is suitable for their purposes, and any obligations that may incur through using the data.
 
