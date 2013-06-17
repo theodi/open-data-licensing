@@ -4,7 +4,7 @@ This guide illustrates how to publish machine-readable rights statements using t
 
 Data published to the web should always be accompanied by machine-readable metadata that describes the dataset, its means of creation and, importantly, a statement of the rights that relate to potential re-use of the data. A clear statement of rights can ensure that data re-users fully understand the potential for re-use of a dataset, whether it is suitable for their purposes, and any obligations that may incur through using the data.
 
-This guide provides and introduction to the ODRS vocabulary, and includes a number of worked examples that illustrate how to use the vocabulary to publish rights metadata in a number of different ways.
+This guide provides an introduction to the ODRS vocabulary, and includes a number of worked examples that illustrate how to use the vocabulary to publish rights metadata in a number of different ways.
 
 A separate companion document, the [Re-users Guide to the Open Data Rights Statement Vocabulary](), offers some additional advice on how to process and use rights statements within applications.
 
@@ -361,7 +361,7 @@ For example an HTTP GET to the fictitious `http://api.example.org/search` API mi
     Content-Type: application/json
     Date: Mon, 17 Jun 2013 13:45:45
 	Link: <http://opendatacommons.org/licenses/odbl/>; rel="license", 
-	      <http://api.example.org/docs/rights>; rel="http://purl.org/dc/terms/rights",
+	      <http://api.example.org/docs/rights>; rel="http://purl.org/dc/terms/rights"
     Server: Apache/2.2.3 (CentOS)
     Vary: Accept
     Content-Length: 12345
