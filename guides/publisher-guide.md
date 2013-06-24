@@ -104,11 +104,11 @@ The ODRS vocabulary includes two terms for capturing copyright notice informatio
 
 As a general guide you should keep your copyright notices short and the text should be distinct from the `attributionText` including in your rights statement. A copyright notice will normally contain the copyright symbol, while the attribution text will not. Similarly the organization name will usually be the attribution text, but will not typically be included in the copyright notice. Separately specifying these short phrases offers more flexibility for data re-users.
 
-For example an `attributionText` of "_Dept of Data_" and "_© Crown copyright 2013_" could be combined in several ways, e.g.:
+For example an `attributionText` of _Dept of Data_ and _© Crown copyright 2013_ could be combined in several ways, e.g.:
 
-* To create a phrase to be added in a web page footer: "_Uses data from Dept. of Data. © Crown copyright 2013_"
-* To build an attribution link that accommpanies some data on a page ("_Data from Dept. of Data_"), whilst the copyright statement is referenced in the footer of the page ("_Some data © Crown copyright 2013_")
-* The developer could contain a simplified attribution statement that combined attribution text and copyright notices from  multiple sources, e.g. "_Uses data from Dept. of Data and Ministry of Facts. © Crown copyright 2013_"
+* To create a phrase to be added in a web page footer: _Uses data from Dept. of Data. © Crown copyright 2013_
+* To build an attribution link that accommpanies some data on a page (_Data from Dept. of Data_), whilst the copyright statement is referenced in the footer of the page (_Some data © Crown copyright 2013_)
+* The developer could contain a simplified attribution statement that combined attribution text and copyright notices from  multiple sources, e.g. _Uses data from Dept. of Data and Ministry of Facts. © Crown copyright 2013_
 
 ## Using the ODRS Vocabulary
 

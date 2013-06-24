@@ -78,7 +78,7 @@ While the example properties used in the algorithm draw heavily on DCAT, it shou
 
 ### Displaying Copyright Notices
 
-Some licenses require you to display copyright notices that are provided by data publishers. A copyright notice is defined using the `copyrightNotice` property, and will typically be a short phrase, e.g. "_© Crown copyright 2013_".
+Some licenses require you to display copyright notices that are provided by data publishers. A copyright notice is defined using the `copyrightNotice` property, and will typically be a short phrase, e.g. _© Crown copyright 2013_.
 
 You should also display any copyright notices found in a rights statement. A simple approach is to include the notice alongside your attribution text and link, e.g.:
 
