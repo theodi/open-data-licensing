@@ -76,7 +76,22 @@ The approach given here is to use the preferred attribution text and URL provide
 
 While the example properties used in the algorithm draw heavily on DCAT, it should be possible to customise the behaviour depending on the data format(s) used by the publisher.
 
-### Attribution in Linked Data Application
+### Displaying Copyright Notices
+
+Some licenses require you to display copyright notices that are provided by data publishers. A copyright notice is defined using the `copyrightNotice` property, and will typically be a short phrase, e.g. "_© Crown copyright 2013_".
+
+You should also display any copyright notices found in a rights statement. A simple approach is to include the notice alongside your attribution text and link, e.g.:
+
+    <span>Uses data supplied by <a href="http://example.org/attribution-link">Example Company</a>. © Crown copyright 2013</span>
+
+If the data publisher has included a `copyrightStatement` link, but has not included any notice text, then you can build a link as follows:
+
+    <span>Uses data supplied by <a href="http://example.org/attribution-link">Example Company</a>. 
+        <a href="http://example.org/attribution-link">Copyright Statement</a>.</span>
+
+See below for further notes on displaying attribution links and copyright notices.
+
+### Attribution in Linked Data Applications
 
 If you are building an application that is consuming and displaying Linked Data, then you should also consider providing direct links to the resources that are referenced in your application. E.g. a community traffic monitoring application that uses the Ordnance Survey Linked Data might link directly to individual geographic areas (e.g. [Bath](http://data.ordnancesurvey.co.uk/id/7000000000024979)) that are referenced from collected traffic reports.
 
@@ -90,9 +105,9 @@ Attribution links should be displayed as close as possible to where the data is 
 
 As general guidance:
 
-* If your application uses a single primary dataset across the whole application, then include an attribution link in the footer of the application
-* If your application uses several datasets, then consider displaying an attribution link next to a logical grouping of data items. For example if you display an "infobox" that provides some additional metadata, then include an attribution link in the footer of the infobox
-* If your application draws on many different datasets then add a [colophon](http://en.wikipedia.org/wiki/Colophon_(publishing)) page that attributes each of the datasets in turn
+* If your application uses a single primary dataset across the whole application, then include an attribution link in the footer of the application, along with any copyright notice provided by the publisher.
+* If your application uses several datasets, then consider displaying an attribution link next to a logical grouping of data items. For example if you display an "infobox" that provides some additional metadata, then include an attribution link in the footer of the infobox. Copyright notices might still be included in the page footer
+* If your application draws on many different datasets then add a [colophon](http://en.wikipedia.org/wiki/Colophon_(publishing)) page that attributes each of the datasets in turn, including copyright notices.
 * If your application consumes multiple datasets but doesn't display the results directly to users then you should still include attribution, again on a colophon or "about" page
 
 Even when your application only uses one or a few datasets you should consider adding a colophon page that provides additional detail on the datasets you're using and how you're using them. This page makes a good location to include copyright notices and perhaps a dataset citation that can clearly reference your data sources.

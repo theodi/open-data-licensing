@@ -47,7 +47,7 @@ For example a statement of rights may typically include some or all of the follo
 
 * A reference to a Dataset Licence
 * A reference to a Content Licence (if, and where applicable)
-* Notices, e.g. copyright notices, that should be preserved by re-users
+* Copyright notices, that should be referenced or displayed by re-users
 * Guidance on a means of attributing the source of the data, e.g. when re-used in an application
 * Pointers to further information, e.g. further guidance on re-use or details on how to acquire additional rights
 
@@ -70,10 +70,22 @@ Attribution is typically less formal. The goal is usually to acknowledge the dat
 
 The ODRS vocabulary provides two terms to support publishing in describing means of attribution:
 
-* `attributionText` -- the name to be used when attributing the creator of some data. This might differ from the name of the organization that published the data. For example it might be a single organization "_Ministry of Justice_" or it could refer to a group of contributors "_Wikipedia Community_". By specifying the attribution text you are clearly indicating to data re-users how you wish to be acknowledged.
-* `attributionURL` -- this is the URL to be used when building an attribution link. The expectation is that the link text displayed to a user will be the value of the `attributionText` property. As a data publisher this provides you with the ability to request attribution to a specific web page. While this might be the dataset homepage, or a link to your organization homepage, it may also be a link to a dedicated attribution page. This is particularly useful if you must also acknowledge your data sources.
+* `attributionText` -- the text to be used when attributing the creator of some data. Typically this will just be the name of your organization, e.g. your company or government department. However it might also be a more general phrase. E.g. a crowd-sourced dataset might use `attributionText` of: "_Wikipedia Community_". You can use this property to specify the attribution text you would like data re-users to use. Without this, re-users will need to decide for themselves how to reference your organisation or dataset. The re-users guide includes some guidance on this.
+* `attributionURL` -- this is the URL to be used when building an attribution link. The expectation is that the link text displayed to a user will be the value of the `attributionText` property. As a data publisher this provides you with the ability to request attribution to a specific web page. While this might be the dataset homepage, or a link to your organization homepage, it may also be a link to a dedicated attribution page. This is particularly useful if you must also acknowledge your data sources. The ability to provide a specific destination page for attribution links also makes it easier to avoid "attribution stacking" issues which can make attribution and re-use difficult.
 
-Publishers should keep attribution text as short as possible, recognising that their data may get re-used in a wide variety of locations. The ability to provide a specific destination page for attribution links makes it easier to avoid "attribution stacking" issues which can make attribution and re-use difficult.
+Publishers should keep attribution text as short as possible, recognising that their data may get re-used in a wide variety of locations. The following are all good examples of attribution text:
+
+* _My Organization_
+* _Open Data, Ltd_
+* _Crowd sourced data community_
+
+The following examples are problematic:
+
+* _Data sourced from My Organization dataset_
+* _Contains data provided by My Organization. Copyright 2013._
+* _This data covers records processed by MyOrg in the period XYZ to XYZ. Data is covered by Crown Copyright_
+
+These examples remove any flexibility on behalf of the data re-user to format and structure links to your dataset in a manner that is in-line with their application. For example the text is either lengthy, difficult to link, or mixes together attribution text with copyright statements (see below). 
 
 The ODRS vocabulary deliberately doesn't describe how to format attributions or citations, e.g. on a web page. Data might be consumed in a number of different ways and displayed on a number of different devices (if at all). Publishers should recognise that styles of attribution and citation will vary between communities and be flexible on their expectations for how this information is displayed. A scientific researcher citing some data in an academic paper will follow (and be bound by) different styles of attribution and citation than a web developer building a mobile application.
 
@@ -81,12 +93,22 @@ The goal of the ODRS vocabulary, and for machine-readable dataset metadata in ge
 
 ### Publishing Copyright Notices
 
-Copyright notices are another important item of metadata to publish as part of a rights statement. These notices must typically be preserved by re-users, particularly if they are re-publishing the data for downstream use.
+Copyright notices are another important item of metadata that might usefully be added to a rights statement. Some open licenses, particularly those from the Creative Commons state that re-users should display any copyright notices provided by publishers.
+
+If you hold copyright over some part of your dataset, you may want to publish a copyright notice for re-users to include when they attribute or cite your dataset.
 
 The ODRS vocabulary includes two terms for capturing copyright notice information:
 
-* The simplest is the `copyrightNotice` term which allows a short copyright notice to be directly included in the rights statement metadata.
-* The `copyrightStatement` term can be used to link to a specific web page that provides a fuller statement of the copyright that relates to a dataset covered by an individual rights statement. This can be useful where the statement might need to recognise a number of different sources.
+* `copyrightNotice` -- this property allows a data publisher to specify a short copyright phrase that can be used directly.
+* `copyrightStatement` -- this property allows you specify a URL for the copyright statement. This can be used an alternative to `copyrightNotice`, instead providing a link to a web page that describes the copyright status of the dataset and any relevant notices. A re-user would link to this page, rather than including your copyright notice. This can be useful if your copyright notices are lengthy, e.g. if you have to reference several sources.
+
+As a general guide you should keep your copyright notices short and the text should be distinct from the `attributionText` including in your rights statement. A copyright notice will normally contain the copyright symbol, while the attribution text will not. Similarly the organization name will usually be the attribution text, but will not typically be included in the copyright notice. Separately specifying these short phrases offers more flexibility for data re-users.
+
+For example an `attributionText` of "_Dept of Data_" and "_© Crown copyright 2013_" could be combined in several ways, e.g.:
+
+* To create a phrase to be added in a web page footer: "_Uses data from Dept. of Data. © Crown copyright 2013_"
+* To build an attribution link that accommpanies some data on a page ("_Data from Dept. of Data_"), whilst the copyright statement is referenced in the footer of the page ("_Some data © Crown copyright 2013_")
+* The developer could contain a simplified attribution statement that combined attribution text and copyright notices from  multiple sources, e.g. "_Uses data from Dept. of Data and Ministry of Facts. © Crown copyright 2013_"
 
 ## Using the ODRS Vocabulary
 
