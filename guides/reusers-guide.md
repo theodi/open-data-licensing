@@ -78,15 +78,17 @@ While the example properties used in the algorithm draw heavily on DCAT, it shou
 
 ### Displaying Copyright Notices
 
-Some licenses require you to display copyright notices that are provided by data publishers. A copyright notice is defined using the `copyrightNotice` property, and will typically be a short phrase, e.g. _© Crown copyright 2013_.
+Some licenses may require you to display or preserve copyright notices that are provided by data publishers. For example you may need to retain notices when re-distributing data. 
 
-You should also display any copyright notices found in a rights statement. A simple approach is to include the notice alongside your attribution text and link, e.g.:
+A copyright notice is defined using the `copyrightNotice` property, and will typically be a short phrase, e.g. _© Crown copyright 2013_, or _Copyright © 2013, Example Ltd_
 
-    <span>Uses data supplied by <a href="http://example.org/attribution-link">Example Company</a>. © Crown copyright 2013</span>
+You should also consider displaying any copyright notices found in a rights statement. A simple approach is to include the notice alongside your attribution text and link, e.g.:
+
+    <span>Uses data from <a href="http://example.org/attribution-link">Example Ltd</a>. © Crown copyright 2013 Example, Ltd.</span>
 
 If the data publisher has included a `copyrightStatement` link, but has not included any notice text, then you can build a link as follows:
 
-    <span>Uses data supplied by <a href="http://example.org/attribution-link">Example Company</a>. 
+    <span>Uses data from <a href="http://example.org/attribution-link">Example Ltd</a>. 
         <a href="http://example.org/attribution-link">Copyright Statement</a>.</span>
 
 See below for further notes on displaying attribution links and copyright notices.
@@ -109,6 +111,7 @@ As general guidance:
 * If your application uses several datasets, then consider displaying an attribution link next to a logical grouping of data items. For example if you display an "infobox" that provides some additional metadata, then include an attribution link in the footer of the infobox. Copyright notices might still be included in the page footer
 * If your application draws on many different datasets then add a [colophon](http://en.wikipedia.org/wiki/Colophon_(publishing)) page that attributes each of the datasets in turn, including copyright notices.
 * If your application consumes multiple datasets but doesn't display the results directly to users then you should still include attribution, again on a colophon or "about" page
+* If you are redistributing data, then ensure that copyright notices provided by the publisher are preserved, e.g. in a `COPYRIGHT` file in your dataset distribution.
 
 Even when your application only uses one or a few datasets you should consider adding a colophon page that provides additional detail on the datasets you're using and how you're using them. This page makes a good location to include copyright notices and perhaps a dataset citation that can clearly reference your data sources.
 
