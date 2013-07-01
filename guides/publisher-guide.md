@@ -479,11 +479,127 @@ The above example includes a rights statement that refers to a custom licence. T
 
 This particular licence is a variation of the CC-BY licence: it permits the creation of derivative works, distribution and reproduction of the data and the re-user must include all copyright notices and license derivatives using similar terms; but there is no _legal_ requirement to include attribution.
 
-### Publishing Rights Statements in JSON-LD
+### Linking to Rights Statements from Web APIs
 
-[JSON-LD](http://json-ld.org/) is a light-weight data format for publishing Linked Data as JSON. It is straight-forward to publish Rights Statements that conform to the ODRS vocabulary using JSON-LD.
+As well as raw data downloads, datasets may also be published via a web API, allowing users to query and extract portions of the data as they need it. The data exposed via the API should also be associated with a clear rights statement. Rather than burying this information in API documentation or the terms of use of a service it can be referenced directly from the results of an API request.
 
-The following example shows how to combine the description of a dataset and its rights into a single JSON-LD document. The `@context` section defines the prefixes for the properties used elsewhere in the JSON document.
+The simplest approach to this is to include a link from the API response to a rights statement published elsewhere, e.g. as RDFa annotations to existing API documentation. 
+
+The `Link` HTTP header defined by [RFC5988](http://tools.ietf.org/html/rfc5988) can be used to add links to HTTP API responses without the need to change the body of the response. This avoids the need to change existing formats and potential impacts on users.
+
+For example an HTTP GET request to the fictitious API available at `http://api.example.org/search` might return the following response:
+
+    HTTP/1.1 200 OK
+    Cache-Control: max-age=86400, must-revalidate
+    Content-Type: application/json
+    Date: Mon, 17 Jun 2013 13:45:45
+	Link: <http://opendatacommons.org/licenses/odbl/>; rel="license", 
+	      <http://api.example.org/docs/rights>; rel="http://purl.org/dc/terms/rights"
+    Server: Apache/2.2.3 (CentOS)
+    Vary: Accept
+    Content-Length: 12345
+ 
+    { ...some JSON data... }
+
+The HTTP response includes a `Link` header that defines two links for this HTTP response. The first uses the standard `license` relation to refer to the data licence associated with the data included in the response. This relation is equivalent to the `dct:license` property used in the RDFa and Linked Data examples. Where included it should reference the data license for the API response.
+
+A custom link relation is also included in the response. This relation uses the URI of the `dct:rights` relationship as the identifier for the relationship. Its value if a link to a separate machine-readable rights statement. An application might follow this link and extract RDFa from the resulting web page to determine the licenses, attribution requirements, etc associated with the API.
+
+Link relations might also be used directly in API responses. Some standard formats define extensible link elements that could also be used to reference a rights statement. For example an Atom based API might include `atom:link` elements to reference a rights statement.
+
+It is increasingly common for Web APIs to be based on JSON. The following section looks in more detail at publishing rights statements in JSON formats.
+
+### Publishing Rights Statements in JSON
+
+The following example shows a simple JSON object that describes a simple, standalone rights statement. 
+
+        {
+            "contentLicense": "http://reference.data.gov.uk/id/open-government-licence",
+            "dataLicense": "http://reference.data.gov.uk/id/open-government-licence",
+            "copyrightNotice": "© Crown copyright 2013",
+            "attributionText": "Example Department",
+            "attributionURL": "http://gov.example.org/dataset/example"
+        }
+
+This structure uses a trivial encoding of the ODRS vocabulary into JSON, with the object having keys that directly correspond to the properties defined by the ODRS vocabulary. 
+
+To include a rights statement in a document that also, for example, describes a dataset, use a `rights` key as follows:
+
+        {
+            "title": "Example Dataset",
+            "license": "http://reference.data.gov.uk/id/open-government-licence",
+            "rights": {
+                "contentLicense": "http://reference.data.gov.uk/id/open-government-licence",
+                "dataLicense": "http://reference.data.gov.uk/id/open-government-licence",
+                "copyrightNotice": "© Crown copyright 2013",
+                "attributionText": "Example Department",
+                "attributionURL": "http://gov.example.org/dataset/example"
+            }
+        }
+
+#### Interpreting a JSON Rights Statement as JSON-LD and RDF
+
+[JSON-LD](http://json-ld.org/) is a light-weight data format for publishing Linked Data as JSON. 
+
+JSON-LD documents can be processed as JSON but also have a standard mapping to RDF. In addition to defining some conventions for encoding data in JSON documents, JSON-LD also defines a way to [allow simple JSON to be interpreted as JSON-LD](http://json-ld.org/spec/latest/json-ld/#interpreting-json-as-json-ld) and hence as RDF. This is achieved by interpreting the data using a JSON-LD context.
+
+A JSON-LD context can be referenced from an HTTP `Link` header, allowing applications that wish to process the data as JSON-LD or as RDF to easily convert the data. For example a GET request to a standalone JSON document containing a rights statement could reference a JSON-LD context as follows:
+
+    HTTP/1.1 200 OK
+    Cache-Control: max-age=86400, must-revalidate
+    Content-Type: application/json
+    Date: Mon, 17 Jun 2013 13:45:45
+	Link: <http://schema.theodi.org/odrs/odrs-jsonld.json>; 
+          rel="http://www.w3.org/ns/json-ld#context"; type="application/ld+json"
+    Server: Apache/2.2.3 (CentOS)
+    Content-Length: 12345
+ 
+    { ...the rights statement as JSON... }
+
+The JSON-LD context available from `http://schema.theodi.org/odrs/odrs-jsonld.json` defines how JSON key-value pairs should be interpreted and mapped to the ODRS vocabulary. The complete JSON-LD context for the ODRS vocabulary is included below:
+
+    {
+        "@context": {
+            "RightsStatement": "http://schema.theodi.org/odrs#RightsStatement",
+            "License": "http://schema.theodi.org/odrs#License",
+            "rights": {
+                "@id": "http://purl.org/dc/terms/rights",
+                "@type": "@id"
+            },
+            "license": {
+                "@id": "http://purl.org/dc/terms/license",
+                "@type": "@id"
+            },
+            "dataLicense": {
+                "@id": "http://schema.theodi.org/odrs#dataLicense",
+                "@type": "@id"
+            },
+            "contentLicense": {
+                "@id": "http://schema.theodi.org/odrs#contentLicense",
+                "@type": "@id"
+            },
+            "reuserGuidelines": {
+                "@id": "http://schema.theodi.org/odrs#reuserGuidelines",
+                "@type": "@id"
+            },
+            "attributionURL": {
+                "@id": "http://schema.theodi.org/odrs#attributionURL",
+                "@type": "@id"
+            },
+            "copyrightStatement": {
+                "@id": "http://schema.theodi.org/odrs#copyrightStatement",
+                "@type": "@id"
+            },
+            "copyrightNotice": "http://schema.theodi.org/odrs#copyrightNotice",
+            "attributionText": "http://schema.theodi.org/odrs#attributionText"
+        }
+    }
+
+While this context is suitable for use with simple standalone rights statements, if your JSON documents include additional data, e.g. a dataset description, then you may need to include this context alongside your own definitions.
+
+#### Publishing Rights Statements directly as JSON-LD
+
+The following final example shows a single JSON-LD document that contains a description of a dataset and its associated rights statement. The example illustrates how to publish a rights statement directly as a JSON-LD document. In this instance the `@context` is simply used to declare some prefixes for properties used elsewhere in the document:
 
     {
         "@context": {
@@ -516,27 +632,4 @@ The following example shows how to combine the description of a dataset and its 
         }
     }
 
-### Publishing Rights Statements for Web APIs
-
-As well as raw data downloads, datasets may also be published via a web API, allowing users to query and extract portions of the data as they need it. The data exposed via the API should also be associated with a clear rights statement. Rather than burying this information in API documentation or the terms of use of a service it can be referenced directly from the results of an API request.
-
-One simple approach to this is to include a link to a machine-readable rights statement that is published elsewhere on a site, e.g. as RDFa annotations in the API documentation. The `Link` HTTP header defined by [RFC5988](http://tools.ietf.org/html/rfc5988) can be used to add links to API responses without the need to change the response formats, avoiding any potential impacts on existing users.
-
-For example an HTTP GET to the fictitious `http://api.example.org/search` API might return the following response:
-
-    HTTP/1.1 200 OK
-    Cache-Control: max-age=86400, must-revalidate
-    Content-Type: application/json
-    Date: Mon, 17 Jun 2013 13:45:45
-	Link: <http://opendatacommons.org/licenses/odbl/>; rel="license", 
-	      <http://api.example.org/docs/rights>; rel="http://purl.org/dc/terms/rights"
-    Server: Apache/2.2.3 (CentOS)
-    Vary: Accept
-    Content-Length: 12345
- 
-    { ...some JSON data... }
-
-The HTTP response includes a `Link` header that defines two links for this HTTP response. The first uses the standard `license` relation to refer to the data licence associated with the data included in the response. In addition a custom link relation is also included to refer to a rights statement that provides a fuller description of the re-use rights associated with the data. The custom relation uses the URI of the `dct:rights` property which we have used elsewhere in the document.
-
-Link relations can also be used directly in API responses. Some standard formats, like Atom, already allow for additional links to be added to a document. Other formats might need further customisation.
 

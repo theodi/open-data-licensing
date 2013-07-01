@@ -6,4 +6,5 @@ task :publish do
     sh %{dowl schema/schema.ttl schema/dowl_template.erb >../schemas/odrs/index.html}
     FileUtils.cp 'schema/diagram.png','../schemas/odrs' 
     FileUtils.cp 'schema/schema.ttl','../schemas/odrs/index.ttl'
+    FileUtils.cp 'schema/odrs-jsonld.json','../schemas/odrs'
 end

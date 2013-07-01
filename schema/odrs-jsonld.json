@@ -1,0 +1,36 @@
+{
+    "@context": {
+        "RightsStatement": "http://schema.theodi.org/odrs#RightsStatement",
+        "License": "http://schema.theodi.org/odrs#License",
+        "rights": {
+            "@id": "http://purl.org/dc/terms/rights",
+            "@type": "@id"
+        },
+        "license": {
+            "@id": "http://purl.org/dc/terms/license",
+            "@type": "@id"
+        },
+        "dataLicense": {
+            "@id": "http://schema.theodi.org/odrs#dataLicense",
+            "@type": "@id"
+        },
+        "contentLicense": {
+            "@id": "http://schema.theodi.org/odrs#contentLicense",
+            "@type": "@id"
+        },
+        "reuserGuidelines": {
+            "@id": "http://schema.theodi.org/odrs#reuserGuidelines",
+            "@type": "@id"
+        },
+        "attributionURL": {
+            "@id": "http://schema.theodi.org/odrs#attributionURL",
+            "@type": "@id"
+        },
+        "copyrightStatement": {
+            "@id": "http://schema.theodi.org/odrs#copyrightStatement",
+            "@type": "@id"
+        },
+        "copyrightNotice": "http://schema.theodi.org/odrs#copyrightNotice",
+        "attributionText": "http://schema.theodi.org/odrs#attributionText"
+    }
+}
