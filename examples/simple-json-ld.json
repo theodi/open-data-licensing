@@ -1,0 +1,30 @@
+{
+    "@context": {
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dct": "http://purl.org/dc/terms/",
+        "odrs": "http://schema.theodi.org/odrs#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    },
+    "@id": "http://gov.example.org/dataset/example",
+    "@type": "dcat:Dataset",
+    "dct:title": "Example Dataset",
+    "dct:license": {
+        "@id": "http://reference.data.gov.uk/id/open-government-licence",
+        "dct:title": "UK Open Government Licence (OGL)"
+    },
+    "dct:rights": {
+        "rdfs:label": "Rights Statement",
+        "@id": "http://gov.example.org/dataset/example#rights",
+        "odrs:copyrightNotice": "Crown copyright 2013",
+        "odrs:attributionText": "Example Department",
+        "odrs:attributionURL": {
+            "@id": "http://gov.example.org/dataset/example"
+        },
+        "odrs:contentLicense": {
+            "@id": "http://reference.data.gov.uk/id/open-government-licence"
+        },
+        "odrs:dataLicense": {
+            "@id": "http://reference.data.gov.uk/id/open-government-licence"
+        }
+    }
+}

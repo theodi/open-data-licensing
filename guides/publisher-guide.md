@@ -116,13 +116,276 @@ The ODRS vocabulary is intended to be used to publish machine-readable metadata 
 
 The following sections provide details on using the vocabulary:
 
+* to publish Rights Statements as embedded metadata in web pages using RDFa
 * to publish Rights Statements as Linked Data, using formats like Turtle and JSON-LD
-* to embed Rights Statements as metadata into web pages using RDFa; and 
-* how to add links to rights statements to web APIs
+* how to add links to rights statements to web APIs and existing formats
 
-The examples in the Linked Data sections introduce the core terms in the vocabulary, while the later examples focus on details of specific data formats.
+The examples in the first section on RDFa introduces the core terms in the vocabulary, while the later examples focus on details of specific data formats.
 
 The github project that supports this vocabulary includes some [additional standalone examples](https://github.com/theodi/open-data-licensing/tree/master/examples) that can be used a further reference.
+
+### Publishing Rights Statements in Web Pages using RDFa
+
+ODRS metadata can easily be embedded into a web page using [RDFa](http://www.w3.org/TR/xhtml-rdfa-primer/). This makes it easy to enhance your dataset and API documentation with some machine-readable metadata.
+
+The following sections show how to markup a rights statement using RDFa. Each example highlights a specific aspect of the vocabulary and is present as a simple HTML fragment. To be valid RDFa some prefixes must be declared in the document. Each of the examples can be added to the following page template to make a valid document:
+
+    <html prefix="dct: http://purl.org/dc/terms/
+                  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+                  dcat: http://www.w3.org/ns/dcat#
+			      odrs: http://schema.theodi.org/odrs#">
+        
+        <body>
+            <!-- Example HTML+RDFa Fragment -->
+        </body>
+    </html>
+
+The complete set of example files can be found in [the example section]((https://github.com/theodi/open-data-licensing/blob/master/examples/) of the supporting github project.
+
+#### Marking up a Rights Statement with a single license
+
+A machine-readable description of a dataset can be published using the DCAT vocabulary. The following HTML fragment shows a very simple description of a dataset published as RDFa:
+
+        <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/example">
+            <h1 property="dct:title">Example Dataset</h1>                      
+
+            <div property="dct:license" 
+                 resource="http://reference.data.gov.uk/id/open-government-licence">
+                <a href="http://reference.data.gov.uk/id/open-government-licence">
+                    UK Open Government Licence (OGL)
+                </a>
+            </div>
+
+            <!-- additional markup with further description of dataset -->
+        </div> 
+
+The outer `div` element identifies the dataset being described and assigns it a type of `dcat:Dataset`. The other nested elements define the title (`dct:title`) and license (`dct:license`) of the dataset. 
+
+The `dct:license` property is already in relatively common use for associating a resource with its license, and it is recommended that publishers continue to use the property to ensure compatibility with existing applications. But using the ODRS vocabulary we can provide a richer description of the rights associated with a dataset.
+
+The following HTML fragment illustrates the most basic use of the ODRS vocabulary. 
+
+        <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/example">
+            <h1 property="dct:title">Example Dataset</h1>                      
+
+            <div property="dct:rights" resource="#rights" typeof="odrs:RightsStatement">
+                <h2 property="rdfs:label">Rights Statement</h2>
+                <p>Published under the 
+                    <a href="http://reference.data.gov.uk/id/open-government-licence" 
+                        property="odrs:dataLicense">UK Open Government Licence (OGL)
+                    </a>
+                </p>
+
+                <p>If you would like to attribute your use of this dataset, 
+                    please use a link similar to the following: 
+                    <a href="http://gov.example.org/dataset/example" 
+                        property="odrs:attributionURL">
+                        <span property="odrs:attributionText">
+                            Example Department
+                        </span>
+                    </a>.
+                </p>
+            </div>
+
+            <div property="dct:license" 
+                 resource="http://reference.data.gov.uk/id/open-government-licence">
+                <a href="http://reference.data.gov.uk/id/open-government-licence">
+                    UK Open Government Licence (OGL)
+                </a>
+            </div>
+
+            <!-- additional markup with further description of dataset -->
+        </div>  
+
+The description of the dataset has been enhanced to include a rights statement resource. The rights statement is associated with the dataset using the Dublin Core `dct:rights` relationship. The rights statement resource has a type of `odrs:RightsStatement` and has been described usings several properties:
+
+* An `rdfs:label` which provides a human-readable label for the rights. This could also be supplemented with, e.g. a `dct:description` property to provide an additional summary of the rights
+* An `odrs:dataLicense` property which specifies the licence covers the re-use of the data. This property should be consistent with the `dct:license` property where both are provided. 
+* The `odrs:attributionText` and `odrs:attributionURL` properties indicate how to attribute the dataset
+
+#### Marking up a Rights Statement with multiple licenses
+
+In some circumstances there are different rights that relate to a dataset (or database) as a whole, and the contents of that database. The ODRS vocabulary allows multiple licences to be associated with a dataset, allowing these data and content licenses to be clearly defined.
+
+The following example dataset includes a Rights Statement that has both the `odrs:dataLicense` and `odrs:contentLicense` properties. 
+
+        <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/example">
+            <h1 property="dct:title">Example Dataset</h1>                      
+
+            <div property="dct:rights" resource="#rights" typeof="odrs:RightsStatement">
+                <h2 property="rdfs:label">Rights Statement</h2>
+                <p>This dataset may be re-used according to the following licenses:</p>
+                <ul>
+                    <li>Data Licence: 
+                        <a href="http://opendatacommons.org/licenses/odbl/1.0/">
+                            property="odrs:dataLicense">Open Database License</a>
+                    </li>
+                    <li>Content Licence: 
+                        <a href="http://opendatacommons.org/licenses/dbcl/1.0/" 
+                            property="odrs:contentLicense">Open Database Content License</a>
+                    </li>
+                </ul>
+
+                <p>If you would like to attribute your use of this dataset, 
+                    please use a link similar to the following: 
+                    <a href="http://gov.example.org/dataset/example" 
+                        property="odrs:attributionURL">
+                        <span property="odrs:attributionText">
+                            Example Department
+                        </span>
+                    </a>.
+                </p>
+            </div>
+
+            <div property="dct:license" 
+                 resource="http://reference.data.gov.uk/id/open-government-licence">
+                <a href="http://reference.data.gov.uk/id/open-government-licence">
+                    UK Open Government Licence (OGL)
+                </a>
+            </div>
+
+            <!-- additional markup with further description of dataset -->
+        </div>        
+
+In this example the licence properties refer to the [Open Database Licence](http://opendatacommons.org/licenses/odbl/) and the [Open Database Content License](http://opendatacommons.org/licenses/dbcl/). While those licences might often be used together, an alternative licence could be applied to the copyrightable part of a dataset. For example a publisher might prefer to use a Creative Commons Licence.
+
+The ability to clearly distinguish between these different types of licences is an important part of the ODRS vocabulary. Notice that the `dct:license` property only refers to the data license. In the context of describing datasets, it is recommended that this property only ever be used to refer to a data license.
+
+Publishers should only create rights statements that include at most one data or content license. A Rights Statement should not have multiple data licences or content licenses. 
+
+Some open licences can be used to license both data and content, so a single licence may cover all aspects of re-use. However it is recommended that publishers still include both of the ODRS licence properties, even if they refer to the same licence resource.
+
+#### Including Copyright Notices and User Guidelines
+
+The description of a Rights Statement can be enriched by including further metadata, including copyright notices. For example while a dataset or its contents might be licensed under a Creative Commons licence, the publisher still retains their copyright in the content. Creative Commons licences indicate that re-users should retain any notices that are provided by a publisher.
+
+The ODRS vocabulary captures copyright information separately to attribution text, making it easier for applications to extract and display the relevant information.
+
+        <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/example">
+            <h1 property="dct:title">Example Dataset</h1>                      
+
+            <div property="dct:rights" resource="#rights" typeof="odrs:RightsStatement">
+                <h2 property="rdfs:label">Rights Statement</h2>
+                <p>Published under the 
+                    <a href="http://reference.data.gov.uk/id/open-government-licence" 
+                        property="odrs:dataLicense">UK Open Government Licence (OGL)
+                    </a>
+                </p>
+
+                <p>When re-using or distributing this data please preserve the 
+                   following copyright notice: "
+                    <span property="odrs:copyrightNotice">© Crown copyright 2013. Example Department
+                    </span>".
+                </p>
+
+                <p>If you would like to attribute your use of this dataset, 
+                    please use a link similar to the following: 
+                    <a href="http://gov.example.org/dataset/example" 
+                        property="odrs:attributionURL">
+                        <span property="odrs:attributionText">
+                            Example Department
+                        </span>
+                    </a>.
+                </p>
+            </div>
+
+            <div property="dct:license" 
+                 resource="http://reference.data.gov.uk/id/open-government-licence">
+                <a href="http://reference.data.gov.uk/id/open-government-licence">
+                    UK Open Government Licence (OGL)
+                </a>
+            </div>
+
+            <!-- additional markup with further description of dataset -->
+        </div>        
+
+The Rights Statement includes a `odrs:copyrightNotice` property in addition to the attribution properties used in the previous examples. An application might choose to display the copyright notice differently to the attribution text, e.g. including it in a general copyright notice section of the application website or in a copyright statement document included in a re-distributed version of the dataset.
+
+In some cases it may be more suitable to provide a link to a copyright statement, e.g. if the text of the copyright notice is lengthy or subject to change. In this case the `odrs:copyrightStatement` property can be used instead. The following rights statement illustrates use of this property:
+
+        <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/example">
+            <h1 property="dct:title">Example Dataset</h1>                      
+
+            <div property="dct:rights" resource="#rights" typeof="odrs:RightsStatement">
+                <h2 property="rdfs:label">Rights Statement</h2>
+                <p>Published under the 
+                    <a href="http://reference.data.gov.uk/id/open-government-licence" 
+                        property="odrs:dataLicense">UK Open Government Licence (OGL)
+                    </a>
+                </p>
+
+                <p>When re-using or distributing this data please provide a link to the 
+                    <a href="http://gov.example.org/copyright"
+                        property="odrs:copyrightStatement">copyright statement</a>.
+                </p>
+
+                <p>If you would like to attribute your use of this dataset, 
+                    please use a link similar to the following: 
+                    <a href="http://gov.example.org/dataset/example" 
+                        property="odrs:attributionURL">
+                        <span property="odrs:attributionText">
+                            Example Department
+                        </span>
+                    </a>.
+                </p>
+                
+                <p>For more information on re-using this dataset, please read the 
+                  <a href="http://gov.example.org/reuser-guide"
+                     property="odrs:reuserGuidelines">re-user guidelines</a>.
+                </p>
+                
+            </div>
+
+            <div property="dct:license" 
+                 resource="http://reference.data.gov.uk/id/open-government-licence">
+                <a href="http://reference.data.gov.uk/id/open-government-licence">
+                    UK Open Government Licence (OGL)
+                </a>
+            </div>
+
+            <!-- additional markup with further description of dataset -->
+        </div>        
+
+This revised example also includes the `odrs:reuserGuidelines` property which can be used to provide a link to further documentation for data re-users. These guidelines might be an FAQ or other user guide that provides a useful overview of the rights statement. In this example the same web page contains both user guidance and a copyright statement.
+
+#### Publishing Standalone Rights Statements
+
+In the previous examples a description of a dataset and its rights statement have been marked up in a single web page. If you are publishing only a single dataset then this will likely be sufficient. If your rights statements will vary across datasets, e.g. to include different licensing, copyright or attribution details, then you should use a per-dataset rights statement.
+
+However if you are publishing several datasets under the same terms then it may be easier to publish a standard rights statement that applies to all of your datasets.
+
+For example the following HTML includes a machine-readable rights statement that might be accessible from: `http://gov.example.org/rights`:
+
+    <div typeof="odrs:RightsStatement" resource="http://gov.example.org/rights#rights">
+         <h1 property="rdfs:label">Rights Statement for Re-use Of Our Open Data</h1>                      
+
+            <p>All our data is published under the 
+                 <a href="http://reference.data.gov.uk/id/open-government-licence" 
+                    property="odrs:contentLicense">UK Open Government Licence (OGL)</a>
+            </p>
+
+            <p>If you would like to attribute your use of our data then, 
+               please use a link similar to the following: 
+                  <a href="http://gov.example.org/open-data" 
+                     property="odrs:attributionURL">
+                       <span property="odrs:attributionText">Example Department</span>
+                  </a>.
+            </p>
+
+     </div>
+
+This standard rights statement could then be referenced from dataset descriptions published elsewhere on your website:
+
+    <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/example">
+         <h1 property="dct:title">Example Dataset</h1>                      
+
+         <p>This dataset is published under an open license. Read our 
+              <a href="http://gov.example.org/rights#rights""
+                 property="dct:rights">standard rights statement</a> for details.
+         </p>            
+        
+         <!-- additional markup with further description of dataset -->
+     </div>
 
 ### Publishing Rights Statements in Linked Data
 
@@ -151,19 +414,7 @@ The following example illustrates how to associate a rights statement with a DCA
 		odrs:attributionText "Ministry of Justice" ;
 		odrs:attributionURL <https://www.gov.uk/government/organisations/ministry-of-justice>.
 	   
-The rights statement is associated with its dataset using the Dublin Core `dct:rights` relationship. The rights are described using an `odrs:RightsStatement` resource which has several important properties:
-
-* A human-readable label specified using `rdfs:label`. This could also be supplemented with, e.g. a `dct:description` property to provide a summary of the rights
-* A `odrs:dataLicense` property which specifies which licence covers the re-use of the associated dataset. In this example it refers to the UK [Open Government Licence](http://www.nationalarchives.gov.uk/doc/open-government-licence/). 
-* The preferred form of attribution is described using the `odrs:attributionText` and `odrs:attributionURL` properties
-
-In addition to the `dct:rights` property the example also includes a `dct:license` property that directly associates the dataset with its licence. The `dct:license` property is already in relatively common use for this purpose and it is recommended that publishers include it for compatibility with existing applications. 
-
-Where the `dct:license` property is included it is recommended that this is used to refer to the same data licence that is referenced from the `odrs:dataLicense` property.
-
 #### Defining a Rights Statement with multiple Licences
-
-In some circumstances there are different rights that relate to a dataset (or database) as a whole, and the contents of that database. The ODRS vocabulary allows multiple licences to be associated with a dataset, allowing these data and content licensed to be clearly defined.
 
 The following example dataset is associated with a Rights Statement that has both the `odrs:dataLicense` and `odrs:contentLicense` properties. 
 
@@ -181,19 +432,7 @@ The following example dataset is associated with a Rights Statement that has bot
 		odrs:attributionText "the Open Products community" ;
 		odrs:attributionURL <http://example.org/open-products>.
 
-In this example the licence properties refer to the [Open Database Licence](http://opendatacommons.org/licenses/odbl/) and the [Open Database Content License](http://opendatacommons.org/licenses/dbcl/). While those licences might often be used together, an alternative licence could be applied to the copyrightable part of a dataset. For example a publisher might prefer to use a Creative Commons Licence.
-
-The ability to clearly distinguish between these different types of licences is an important part of the ODRS vocabulary.
-
-Publishers should only create rights statements that include at most one data licence and one content licence. For example a Rights Statement should not have multiple data licences. 
-
-Some open licences can be used to license both data and content, so a single licence can be used to cover all aspects of re-use. However it is recommended that publishers still include both of the ODRS licence properties, even if they refer to the same licence resource.
-
 #### Including Copyright Notices and User Guidelines
-
-The description of a Rights Statement can be enriched by including further metadata, including copyright notices. For example while a dataset or its contents might be licensed under a Creative Commons licence, the publisher still retains their copyright in the content. Creative Commons licences indicate that re-users should retain any notices that are provided by a publisher.
-
-The ODRS vocabulary captures copyright information separately to attribution text, making it easier for applications to extract and display the relevant information.
 
 The following example illustrates how the Ordnance Survey Open Data might have been described using the ODRS vocabulary:
 
@@ -207,26 +446,9 @@ The following example illustrates how the Ordnance Survey Open Data might have b
 		a odrs:RightsStatement;
 		odrs:dataLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
 		odrs:contentLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
-		odrs:copyrightNotice "Contains Ordnance Survey data © Crown copyright and database right 2013. 
-        Contains Royal Mail data © Royal Mail copyright and database right 2013. 
-        Contains National Statistics data © Crown copyright and database right 2013." ;
+		odrs:copyrightNotice "© Crown copyright and database right 2013. Ordnance Survey, Royal Mail" ;
 		odrs:attributionText "Ordnance Survey";
 		odrs:attributionURL <http://ordnancesurvey.co.uk>.
-
-The Rights Statement includes a `odrs:copyrightNotice` property in addition to the attribution properties used in the previous examples. An application might choose to display the copyright notice differently to the attribution text, e.g. including it in a general copyright notice section of the application website.
-
-In some cases it may be more suitable to provide a link to a copyright statement, e.g. if the text of the copyright notice is lengthy or subject to change. In this case the `odrs:copyrightStatement` property can be used instead. The following rights statement illustrates use of this property:
-
-	:example3-rights-statement
-		a odrs:RightsStatement;
-		odrs:dataLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
-		odrs:contentLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
-		odrs:copyrightStatement <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licensing.html> ;
-        odrs:reuserGuidelines <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licensing.html> ;
-		odrs:attributionText "Ordnance Survey";
-		odrs:attributionURL <http://ordnancesurvey.co.uk>.
-
-This revised example also includes the `odrs:reuserGuidelines` property which can be used to provide a link to further documentation for data re-users. These guidelines might be an FAQ or other user guide that provides a useful overview of the rights statement. In this example the same web page contains both user guidance and a copyright statement.
 
 #### Combining the ODRS and ccREL vocabularies
 
@@ -254,7 +476,7 @@ The following example illustrates how to combine [the Creative Commons vocabular
         
 The above example includes a rights statement that refers to a custom licence. The licence is described using terms from the Creative Commons vocabulary including a link to its legal definition and a series of permissions and requirements. This particular licence is a variation of the CC-BY licence: it permits the creation of derivative works, distribution and reproduction of the data and the re-user must include all copyright notices and license derivatives using similar terms; but there is no _legal_ requirement to include attribution.
 
-#### Publishing Rights Statements in JSON-LD
+### Publishing Rights Statements in JSON-LD
 
 [JSON-LD](http://json-ld.org/) is a light-weight data format for publishing Linked Data as JSON. It is straight-forward to publish Rights Statements that conform to the ODRS vocabulary using JSON-LD.
 
@@ -267,108 +489,29 @@ The following example shows how to combine the description of a dataset and its 
             "odrs": "http://schema.theodi.org/odrs#",
             "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
         },
-        "@id": "http://gov.example.org/dataset/finances",
+        "@id": "http://gov.example.org/dataset/example",
         "@type": "dcat:Dataset",
-        "dct:title": "Example Finances Dataset",
+        "dct:title": "Example Dataset",
         "dct:license": {
             "@id": "http://reference.data.gov.uk/id/open-government-licence",
             "dct:title": "UK Open Government Licence (OGL)"
         },
         "dct:rights": {
             "rdfs:label": "Rights Statement",
-            "@id": "http://gov.example.org/dataset/finances#rights",
-            "odrs:copyrightNotice": "Contains public sector information licensed under the OGL v1.0",
+            "@id": "http://gov.example.org/dataset/example#rights",
+            "odrs:copyrightNotice": "© Crown copyright 2013",
             "odrs:attributionText": "Example Department",
             "odrs:attributionURL": {
-                "@id": "http://gov.example.org/dataset/finances"
+                "@id": "http://gov.example.org/dataset/example"
             },
             "odrs:contentLicense": {
                 "@id": "http://reference.data.gov.uk/id/open-government-licence"
             },
             "odrs:dataLicense": {
                 "@id": "http://reference.data.gov.uk/id/open-government-licence"
-                }
+            }
         }
     }
-
-### Publishing Rights Statements in Web Pages using RDFa
-
-ODRS metadata can easily be embedded into a web page using [RDFa](http://www.w3.org/TR/xhtml-rdfa-primer/). The following example illustrates how to 
-add a multi-licence rights statement as part of describing a DCAT dataset. The [complete example file](https://github.com/theodi/open-data-licensing/blob/master/examples/simple-rdfa-example.html) is included in the supporting github project.
-
-Firstly, the prefixes need to be added to the HTML element in the document:
-
-    <html prefix="dct: http://purl.org/dc/terms/
-                  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
-                  dcat: http://www.w3.org/ns/dcat#
-			      odrs: http://schema.theodi.org/odrs#">
-
-
-Then the description of the dataset and the rights statement can be added to the document. The outer `div` element identifies the DCAT dataset and defines its `dct:title`. The `dct:rights` and `dct:license` properties are then used to refer to its Rights Statement and data licence. The rights statement references multiple licences, a copyright notice and a suggested method of attribution:
-
-    <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/finances">
-         <h1 property="dct:title">Example Finances Dataset</h1>                      
-           <div property="dct:rights" resource="#rights">
-             <div resource="#rights">
-                 <h2 property="rdfs:label">Rights Statement</h2>
-                 <ul>
-                     <li>Data Licence: <a href="http://reference.data.gov.uk/id/open-government-licence" 
-                                       property="odrs:dataLicense">UK Open Government Licence (OGL)</a>
-                     </li>
-                     <li>Content Licence: <a href="http://reference.data.gov.uk/id/open-government-licence" 
-                                       property="odrs:contentLicense">UK Open Government Licence (OGL)</a>
-                     </li>
-                 </ul>
-                 <p>
-                 When re-using this data please preserve the following copyright notice: 
-                 "<span property="odrs:copyrightNotice">Contains public sector information licensed 
-                   under the Open Government Licence v1.0</span>".
-                 </p>
-
-                 <p>
-                 If you would like to attribute your use of this dataset, please use a link 
-                 similar to the following: 
-                 <a href="http://gov.example.org/dataset/finances" 
-                    property="odrs:attributionURL">
-                     <span property="odrs:attributionText">Example Department</span>
-                 </a>.
-                 </p>
-             </div>
-                 
-         </div>
-
-         <div property="dct:license" 
-              resource="http://reference.data.gov.uk/id/open-government-licence">
-             <a href="http://reference.data.gov.uk/id/open-government-licence">
-             <span property="dct:title">UK Open Government Licence (OGL)</span>
-             </a>
-         </div>
-
-         <!-- additional markup with further description of dataset -->
-     </div>
-
-The equivalent metadata in Turtle is given below:
-
-    @prefix dcat: <http://www.w3.org/ns/dcat#> .
-    @prefix dct: <http://purl.org/dc/terms/> .
-    @prefix odrs: <http://schema.theodi.org/odrs#> .
-    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-
-    <http://gov.example.org/dataset/finances> a dcat:Dataset;
-        dct:license <http://reference.data.gov.uk/id/open-government-licence>;
-        dct:rights <#rights>;
-        dct:title "Example Finances Dataset" .
-
-    <#rights> rdfs:label "Rights Statement";
-        odrs:attributionText "Example Department";
-        odrs:attributionURL <http://gov.example.org/dataset/finances>;
-        odrs:contentLicense <http://reference.data.gov.uk/id/open-government-licence>;
-        odrs:copyrightNotice "Contains public sector information licensed under the Open Government Licence v1.0";
-        odrs:dataLicense <http://reference.data.gov.uk/id/open-government-licence> .
-
-    <http://reference.data.gov.uk/id/open-government-licence> dct:title "UK Open Government Licence (OGL)" .
-
-In this case both the dataset and its right statement are described in the same page, but the rights statement might be described in a separate web page, allowing it to be referenced by more than one dataset.
 
 ### Publishing Rights Statements for Web APIs
 

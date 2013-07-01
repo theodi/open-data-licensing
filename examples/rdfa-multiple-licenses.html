@@ -1,0 +1,46 @@
+<html prefix="dct: http://purl.org/dc/terms/
+              rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+              dcat: http://www.w3.org/ns/dcat#
+     odrs: http://schema.theodi.org/odrs#">
+    
+    <body>
+        <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/example">
+            <h1 property="dct:title">Example Dataset</h1>                      
+
+            <div property="dct:rights" resource="#rights" typeof="odrs:RightsStatement">
+                <h2 property="rdfs:label">Rights Statement</h2>
+                <p>This dataset may be re-used according to the following licenses:</p>
+                <ul>
+                    <li>Data Licence: 
+                        <a href="http://opendatacommons.org/licenses/odbl/1.0/">
+                            property="odrs:dataLicense">Open Database License</a>
+                    </li>
+                    <li>Content Licence: 
+                        <a href="http://opendatacommons.org/licenses/dbcl/1.0/" 
+                            property="odrs:contentLicense">Open Database Content License</a>
+                    </li>
+                </ul>
+
+                <p>If you would like to attribute your use of this dataset, 
+                    please use a link similar to the following: 
+                    <a href="http://gov.example.org/dataset/example" 
+                        property="odrs:attributionURL">
+                        <span property="odrs:attributionText">
+                            Example Department
+                        </span>
+                    </a>.
+                </p>
+            </div>
+
+            <div property="dct:license" 
+                 resource="http://reference.data.gov.uk/id/open-government-licence">
+                <a href="http://reference.data.gov.uk/id/open-government-licence">
+                    UK Open Government Licence (OGL)
+                </a>
+            </div>
+
+            <!-- additional markup with further description of dataset -->
+        </div>        
+    </body>
+</html>
+
