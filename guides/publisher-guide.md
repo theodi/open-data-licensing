@@ -95,20 +95,31 @@ The goal of the ODRS vocabulary, and for machine-readable dataset metadata in ge
 
 Copyright notices are another important item of metadata that might usefully be added to a rights statement. Some open licenses, particularly those from the Creative Commons state that re-users should display any copyright notices provided by publishers.
 
-If you hold copyright over some part of your dataset, you may want to publish a copyright notice for re-users to include when they attribute or cite your dataset.
+If you hold copyright over some part of your dataset, you may wish to publish a copyright notice for re-users. This can be useful as it will support re-users in displaying or referencing a copyright notice or preserving a notice when redistributing data, if this is allowed by your data license.
 
 The ODRS vocabulary includes two terms for capturing copyright notice information:
 
-* `copyrightNotice` -- this property allows a data publisher to specify a short copyright phrase that can be used directly.
+* `copyrightNotice` -- this property allows a data publisher to specify a short copyright notice that can be used directly.
 * `copyrightStatement` -- this property allows you specify a URL for the copyright statement. This can be used an alternative to `copyrightNotice`, instead providing a link to a web page that describes the copyright status of the dataset and any relevant notices. A re-user would link to this page, rather than including your copyright notice. This can be useful if your copyright notices are lengthy, e.g. if you have to reference several sources.
 
-As a general guide you should keep your copyright notices short and the text should be distinct from the `attributionText` including in your rights statement. A copyright notice will normally contain the copyright symbol, while the attribution text will not. Similarly the organization name will usually be the attribution text, but will not typically be included in the copyright notice. Separately specifying these short phrases offers more flexibility for data re-users.
+As a general guide you should keep your copyright notices short and the text should be distinct from your `attributionText`. Wikipedia includes some notes on the [technical requirements for copyright notices](http://en.wikipedia.org/wiki/Copyright_notice#Technical_requirements) and there is generally specific advice available from your national copyright agency. See for example [guidance from the UK Copyright Service](http://www.copyrightservice.co.uk/copyright/p03_copyright_notices) and [the US Copyright Office](http://www.copyright.gov/circs/circ03.pdf).
+
+Generally, unless there is specific guidance that applies to your organisation or region, then it is recommended that a copyright notice consist of:
+
+* The phrase "_Copyright_"
+* The copyright symbol
+* The year of copyright
+* The copyright owners name, or a well-known alias
+
+E.g. "_Copyright © 2013. Example, Ltd_".
+
+The copyright owners name may overlap with the attribution text, but may also be different. The attribution text should not contain a copyright symbol or the word "Copyright" and instead be the name of the organisation or group who should be attributed. Separately and clearly marking up these different elements will provide more flexibility for re-users.
 
 For example an `attributionText` of _Dept of Data_ and _© Crown copyright 2013_ could be combined in several ways, e.g.:
 
 * To create a phrase to be added in a web page footer: _Uses data from Dept. of Data. © Crown copyright 2013_
-* To build an attribution link that accommpanies some data on a page (_Data from Dept. of Data_), whilst the copyright statement is referenced in the footer of the page (_Some data © Crown copyright 2013_)
-* The developer could contain a simplified attribution statement that combined attribution text and copyright notices from  multiple sources, e.g. _Uses data from Dept. of Data and Ministry of Facts. © Crown copyright 2013_
+* To build an attribution link for a data element on a page (_Data from Dept. of Data_), whilst the copyright statement is referenced in the footer of the page (_© Crown copyright 2013. Dept of Data_)
+* The developer could create a simplified attribution statement that combined attribution text and copyright notices from  multiple sources, e.g. _Uses data from Dept. of Data and Ministry of Facts. © Crown copyright 2013_
 
 ## Using the ODRS Vocabulary
 
