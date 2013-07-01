@@ -1,0 +1,19 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrs: <http://schema.theodi.org/odrs#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix : <http://example.org/data/> .
+
+:example1
+    a dcat:Dataset ;
+    dct:title "Example Dataset" ;
+    dct:rights :example1-rights-statement;
+    dct:license <http://reference.data.gov.uk/id/open-government-licence>.
+
+:example1-rights-statement
+    a odrs:RightsStatement;
+    rdfs:label "Rights relating to re-use of the Example Dataset" ;
+    odrs:dataLicense <http://reference.data.gov.uk/id/open-government-licence> ;
+    odrs:attributionText "Example Department" ;
+    odrs:attributionURL <https://www.gov.uk/government/organisations/ministry-of-justice>.

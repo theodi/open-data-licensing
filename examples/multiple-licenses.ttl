@@ -1,0 +1,20 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix odrs: <http://schema.theodi.org/odrs#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix : <http://example.org/data/> .
+
+:example2
+    a dcat:Dataset ;
+    dct:title "Open Products" ;
+    dct:rights :example2-rights-statement;
+    dct:license <http://opendatacommons.org/licenses/odbl/1.0/>.
+
+:example2-rights-statement
+    a odrs:RightsStatement;
+    rdfs:label "Rights relating to re-use of the Open Products Dataset" ;
+    odrs:dataLicense <http://opendatacommons.org/licenses/odbl/1.0/> ;
+    odrs:contentLicense <http://opendatacommons.org/licenses/dbcl/1.0/> ;
+    odrs:attributionText "the Open Products community" ;
+    odrs:attributionURL <http://example.org/open-products>.

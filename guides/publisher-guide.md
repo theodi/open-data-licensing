@@ -356,8 +356,8 @@ However if you are publishing several datasets under the same terms then it may 
 
 For example the following HTML includes a machine-readable rights statement that might be accessible from: `http://gov.example.org/rights`:
 
-    <div typeof="odrs:RightsStatement" resource="http://gov.example.org/rights#rights">
-         <h1 property="rdfs:label">Rights Statement for Re-use Of Our Open Data</h1>                      
+        <div typeof="odrs:RightsStatement" resource="http://gov.example.org/rights#rights">
+            <h1 property="rdfs:label">Rights Statement for Re-use Of Our Open Data</h1>                      
 
             <p>All our data is published under the 
                  <a href="http://reference.data.gov.uk/id/open-government-licence" 
@@ -371,21 +371,20 @@ For example the following HTML includes a machine-readable rights statement that
                        <span property="odrs:attributionText">Example Department</span>
                   </a>.
             </p>
-
-     </div>
+        </div>
 
 This standard rights statement could then be referenced from dataset descriptions published elsewhere on your website:
 
-    <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/example">
-         <h1 property="dct:title">Example Dataset</h1>                      
+        <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/example">
+            <h1 property="dct:title">Example Dataset</h1>                      
 
-         <p>This dataset is published under an open license. Read our 
-              <a href="http://gov.example.org/rights#rights""
-                 property="dct:rights">standard rights statement</a> for details.
-         </p>            
+            <p>This dataset is published under an open license. Read our 
+                <a href="http://gov.example.org/rights#rights""
+                    property="dct:rights">standard rights statement</a> for details.
+            </p>            
         
-         <!-- additional markup with further description of dataset -->
-     </div>
+            <!-- additional markup with further description of dataset -->
+        </div>
 
 ### Publishing Rights Statements in Linked Data
 
@@ -396,6 +395,7 @@ The following examples all use the [Turtle](http://www.w3.org/TR/turtle/) RDF sy
     @prefix dct: <http://purl.org/dc/terms/> .
     @prefix odrs: <http://schema.theodi.org/odrs#> .
     @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix : <http://example.org/data/> .
 
 #### Defining a Rights Statement with a single Licence
 
@@ -403,15 +403,15 @@ The following example illustrates how to associate a rights statement with a DCA
 
 	:example1
 		a dcat:Dataset ;
-		dct:title "Court Cases Dataset" ;
+		dct:title "Example Dataset" ;
 		dct:rights :example1-rights-statement;
 		dct:license <http://reference.data.gov.uk/id/open-government-licence>.
 
 	:example1-rights-statement
 		a odrs:RightsStatement;
-		rdfs:label "Rights relating to re-use of the Court Cases Dataset" ;
+		rdfs:label "Rights relating to re-use of the Example Dataset" ;
 		odrs:dataLicense <http://reference.data.gov.uk/id/open-government-licence> ;
-		odrs:attributionText "Ministry of Justice" ;
+		odrs:attributionText "Example " ;
 		odrs:attributionURL <https://www.gov.uk/government/organisations/ministry-of-justice>.
 	   
 #### Defining a Rights Statement with multiple Licences
@@ -434,25 +434,26 @@ The following example dataset is associated with a Rights Statement that has bot
 
 #### Including Copyright Notices and User Guidelines
 
-The following example illustrates how the Ordnance Survey Open Data might have been described using the ODRS vocabulary:
+The following example illustrates how add a copyright notice and a reference to a reuser guidelines:
 
-	<http://data.ordnancesurvey.co.uk/id/data/os-linked-data> 
-		rdf:type void:Dataset ;
-		dct:title "Ordnance Survey Linked Data" ;
-		dct:license <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf> ;
-		dct:rights 	:example3-rights-statement;
+    :example3
+        a dcat:Dataset ;
+        dct:title "Example Dataset" ;
+        dct:rights :example3-rights-statement;
+        dct:license <http://reference.data.gov.uk/id/open-government-licence>.
 
-	:example3-rights-statement
-		a odrs:RightsStatement;
-		odrs:dataLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
-		odrs:contentLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
-		odrs:copyrightNotice "© Crown copyright and database right 2013. Ordnance Survey, Royal Mail" ;
-		odrs:attributionText "Ordnance Survey";
-		odrs:attributionURL <http://ordnancesurvey.co.uk>.
+    :example3-rights-statement
+        a odrs:RightsStatement;
+        rdfs:label "Rights relating to re-use of the Example Dataset" ;
+        odrs:copyrightNotice "Crown copyright 2013";
+        odrs:reuserGuidelines <http://gov.example.org/reuser-guide>;
+        odrs:dataLicense <http://reference.data.gov.uk/id/open-government-licence> ;
+        odrs:attributionText "Example Department" ;
+        odrs:attributionURL <https://www.gov.uk/government/organisations/ministry-of-justice>.
 
 #### Combining the ODRS and ccREL vocabularies
 
-Wherever possible, publishers are encouraged to use an "off-the-shelf" Open Data licence, but in some circumstances a custom licence might be required. The Creative Commons have created a vocabulary that supports the publishing of a machine-readable description of the key facets of a data or content licence.
+The ODRS vocabulary can be combined with the Creative Commons `ccREL` vocabulary to provide more detailed descriptions of custom data licenses. While publishers are encouraged to use an "off-the-shelf" license wherever possible, in the circumstances where a custom license is required then it would be useful to have a machine-readable description of the key facets of that license.
 
 The following example illustrates how to combine [the Creative Commons vocabulary](http://creativecommons.org/ns) with ODRS:
 
@@ -474,7 +475,9 @@ The following example illustrates how to combine [the Creative Commons vocabular
         cc:permits cc:DerivativeWorks, cc:Distribtion, cc:Reproduction ;
         cc:requires cc:Notice , cc:ShareAlike .
         
-The above example includes a rights statement that refers to a custom licence. The licence is described using terms from the Creative Commons vocabulary including a link to its legal definition and a series of permissions and requirements. This particular licence is a variation of the CC-BY licence: it permits the creation of derivative works, distribution and reproduction of the data and the re-user must include all copyright notices and license derivatives using similar terms; but there is no _legal_ requirement to include attribution.
+The above example includes a rights statement that refers to a custom licence. The licence is described using terms from the Creative Commons vocabulary including a link to its legal definition and a series of permissions and requirements. 
+
+This particular licence is a variation of the CC-BY licence: it permits the creation of derivative works, distribution and reproduction of the data and the re-user must include all copyright notices and license derivatives using similar terms; but there is no _legal_ requirement to include attribution.
 
 ### Publishing Rights Statements in JSON-LD
 
