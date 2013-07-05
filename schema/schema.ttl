@@ -79,7 +79,7 @@ odrs:rights
 odrs:reuserGuidelines
     a owl:ObjectProperty;
     rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
-    rdfs:label "rights"@en;
+    rdfs:label "guidelines for re-users"@en;
     rdfs:comment """Link to a document that provides guidelines for re-users of data that is covered by a specific rights statement. The guidelines 
 may include more detail on attribution guidelines, a fuller copyright statement, and general guidance on how the data might be re-used"""@en;
     rdfs:domain odrs:RightsStatement;
