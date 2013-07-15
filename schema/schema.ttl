@@ -20,7 +20,7 @@
     rdfs:label "Open Data Rights Statement Vocabulary";
     rdfs:comment """A vocabulary that supports the publication of Open Data by providing the means to capture machine-readable "rights statements", e.g. the licensing information, copyright notices and attribution requirements that are associated with the publication and re-use of a dataset.""";
     dct:created "2013-05-31"^^xsd:date;
-    dct:modified "2013-06-17"^^xsd:date;
+    dct:modified "2013-07-15"^^xsd:date;
     foaf:maker <http://www.ldodds.com#me>.
 
 <http://www.ldodds.com#me> a foaf:Person ;
@@ -34,7 +34,7 @@ odrs:RightsStatement
     a owl:Class;    
     rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
     rdfs:label "Rights Statement"@en;
-    rdfs:comment """A description of the rights and terms of re-use for a dataset. A rights statement will include a reference to one or more licences copyright notices, and attribution requirements. Where a Rights Statement refers to several licences the intention is that these should separately apply to the data and content associated with the dataset. An individual Rights Statement may be specific to a dataset or could be applied to a 
+    rdfs:comment """A description of how to re-use a dataset. A rights statement will include a reference to one or more licences, copyright notices, and attribution requirements. A Rights Statement provides additional context that qualifies the relationship between a dataset and its license(s). Where a Rights Statement refers to several licences the intention is that these should separately apply to the data and content associated with the dataset. An individual Rights Statement may be specific to a dataset or could be applied to a 
 number of datasets published by the same organisation or person, where the rights associated with each dataset are identical."""@en;
     rdfs:subClassOf dct:RightsStatement.
 
@@ -42,7 +42,7 @@ odrs:License
     a owl:Class;    
     rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
     rdfs:label "License"@en;
-    rdfs:comment """A legal document that describes the legal terms for re-use of some information. A licence might be applicable to content, data, or both. This definition of licence used here is deliberately loose, and is intended to also cover waiver documents that indicate that the owner waives all rights over some information, e.g. public domain dedications."""@en;
+    rdfs:comment """A legal document that describes the legal terms for re-use of some information. A licence might be applicable to content, data, or both. It is expected that in most cases a License is a standard set of legal terms that might be used to support the publication of any number of datasets. This definition of licence used here is deliberately loose, and is intended to also cover waiver documents that indicate that the owner waives all rights over some information, e.g. public domain dedications."""@en;
     rdfs:subClassOf dct:LicenseDocument;
     owl:equivalentClass cc:License.
 
@@ -102,16 +102,32 @@ odrs:copyrightStatement
     rdfs:domain odrs:RightsStatement;
     rdfs:range foaf:Document.
 
+odrs:compatibleWith
+    a owl:ObjectProperty;
+    rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
+    rdfs:label "compatible with"@en;
+    rdfs:comment """Indicates that one license is compatible with another. As a broad guideline, licenses X and Y may be considered to be compatible if by complying with all requirements of License X, a re-user would also comply with all requirements of License Y; in addition, everything permitted by License X is also permitted by License Y"""@en;
+    rdfs:domain odrs:License;
+    rdfs:range odrs:License.
+
 
 ############################################################################
 # Datatype Properties
 ############################################################################
 
-odrs:copyrightNotice
+odrs:copyrightHolder
     a owl:DatatypeProperty;
     rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
-    rdfs:label "copyright notice"@en;
-    rdfs:comment """The copyright notice associated with a rights statement. A notice must typically be preserved and displayed when acknowledging the source of some data. This property is expressed as a simple literal value and so is suitable for simple copyright notices. Where a data publisher needs to reference a larger copyright statement and/or related guidance then the copyrightStatement property should be used instead."""@en;    
+    rdfs:label "copyright holder"@en;
+    rdfs:comment """The name of the person, organisation or group that holds copyright over the dataset or its contents"""@en;    
+    rdfs:range rdfs:Literal;
+    rdfs:domain odrs:RightsStatement.
+
+odrs:copyrightYear
+    a owl:DatatypeProperty;
+    rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
+    rdfs:label "copyright year"@en;
+    rdfs:comment """The year from which copyright is asserted."""@en;    
     rdfs:range rdfs:Literal;
     rdfs:domain odrs:RightsStatement.
 

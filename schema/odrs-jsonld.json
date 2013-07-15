@@ -30,7 +30,8 @@
             "@id": "http://schema.theodi.org/odrs#copyrightStatement",
             "@type": "@id"
         },
-        "copyrightNotice": "http://schema.theodi.org/odrs#copyrightNotice",
+        "copyrightHolder": "http://schema.theodi.org/odrs#copyrightHolder",
+        "copyrightYear": "http://schema.theodi.org/odrs#copyrightYear",
         "attributionText": "http://schema.theodi.org/odrs#attributionText"
     }
 }

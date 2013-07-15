@@ -23,7 +23,7 @@ In most cases these properties will be the starting point for discovering machin
 
 A `odrs:RightsStatement` resource may have several properties that can be useful in your application:
 
-* The `odrs:copyrightNotice` and `odrs:copyrightStatement` properties respectively provide the text or a link to a copyright statement that applies to the dataset you are using. Some licences, including those from the Creative Commons, require you to preserve copyright notices provided by the data publisher. These properties allow you to include a short notice in your application or a link to a fuller copyright statement.
+* The `odrs:copyrightHolder`, `odrs:copyrightYear` and `odrs:copyrightStatement` properties provide guidance on creating a copyright notice or a link to a copyright statement that applies to the dataset you are using. Some licences, including those from the Creative Commons, require you to preserve copyright notices provided by the data publisher. These properties allow you to include a short notice in your application or a link to a fuller copyright statement.
 * The `attributionText` and `attributionURL` properties provide the means for publishers to describe their preferred form of attribution
 
 A Rights Statement might be published alongside a description of a dataset, e.g. as embedded metadata expressed using RDFa. However they might also be published separately, e.g. as a standalone web page or document that is referenced by several datasets.
@@ -80,11 +80,9 @@ While the example properties used in the algorithm draw heavily on DCAT, it shou
 
 Some licenses may require you to display or preserve copyright notices that are provided by data publishers. For example you may need to retain notices when re-distributing data. 
 
-A copyright notice is defined using the `copyrightNotice` property, and will typically be a short phrase, e.g. _© Crown copyright 2013_, or _Copyright © 2013, Example Ltd_
+A basic copyright notice is defined using the `copyrightHolder` and `copyrightYear` properties. You should also consider displaying any copyright notices found in a rights statement. A simple approach is to include the notice alongside your attribution text and link, e.g.:
 
-You should also consider displaying any copyright notices found in a rights statement. A simple approach is to include the notice alongside your attribution text and link, e.g.:
-
-    <span>Uses data from <a href="http://example.org/attribution-link">Example Ltd</a>. © Crown copyright 2013 Example, Ltd.</span>
+    <span>Uses data from <a href="http://example.org/attribution-link">Example Ltd</a>. © Copyright 2013 Example, Ltd.</span>
 
 If the data publisher has included a `copyrightStatement` link, but has not included any notice text, then you can build a link as follows:
 
