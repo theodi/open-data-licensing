@@ -14,7 +14,8 @@
 :example3-rights-statement
     a odrs:RightsStatement;
     rdfs:label "Rights relating to re-use of the Example Dataset" ;
-    odrs:copyrightNotice "Crown copyright 2013";
+    odrs:copyrightHolder "Crown copyright";
+    odrs:copyrightYear "2013";
     odrs:reuserGuidelines <http://gov.example.org/reuser-guide>;
     odrs:dataLicense <http://reference.data.gov.uk/id/open-government-licence> ;
     odrs:attributionText "Example Department" ;

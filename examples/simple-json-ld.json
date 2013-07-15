@@ -15,7 +15,8 @@
     "dct:rights": {
         "rdfs:label": "Rights Statement",
         "@id": "http://gov.example.org/dataset/example#rights",
-        "odrs:copyrightNotice": "Crown copyright 2013",
+        "odrs:copyrightHolder": "Crown copyright",
+        "odrs:copyrightYear": "2013",
         "odrs:attributionText": "Example Department",
         "odrs:attributionURL": {
             "@id": "http://gov.example.org/dataset/example"

@@ -30,7 +30,7 @@
 		a odrs:RightsStatement;
 		odrs:dataLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
 		odrs:contentLicense <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf>;
-		odrs:copyrightNotice "© Crown copyright and database right 2013. Ordnance Survey, Royal Mail" ;
+		odrs:copyrightStatement <http://www.ordnancesurvey.co.uk/oswebsite/opendata/licence/docs/licence.pdf> ;
 		odrs:attributionText "Ordnance Survey";
 		odrs:attributionURL <http://ordnancesurvey.co.uk>
     ].
