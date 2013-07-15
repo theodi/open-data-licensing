@@ -106,7 +106,8 @@ odrs:compatibleWith
     a owl:ObjectProperty;
     rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
     rdfs:label "compatible with"@en;
-    rdfs:comment """Indicates that one license is compatible with another. As a broad guideline, licenses X and Y may be considered to be compatible if by complying with all requirements of License X, a re-user would also comply with all requirements of License Y; in addition, everything permitted by License X is also permitted by License Y"""@en;
+    rdfs:comment """Indicates that one license is compatible with another. Here this is defined as meaning that two Licenses X and Y have the same requirements, permissions, and possibly prohibitions. 
+    A user may therefore relicense data under License Y because their use will still comply with License X. Re-use that is compliant with License Y is automatically compliant with License X."""@en;    
     rdfs:domain odrs:License;
     rdfs:range odrs:License.
 
