@@ -14,6 +14,13 @@ The Open Data Rights Statement vocabulary is intended to support the publication
 
 The following sections of the document provide more background on the vocabulary, including references to relevant related work.
 
+## User Guides
+
+There are two user guides which support the use of this vocabulary:
+
+* [Publishers Guide](https://github.com/theodi/open-data-licensing/blob/master/guides/publisher-guide.md) -- a guide for data publishers that provides more detail on the design of the vocabulary and how it can be applied in a number of data publishing scenarios
+* [Re-Users Guide](https://github.com/theodi/open-data-licensing/blob/master/guides/reusers-guide.md) -- a guide for data re-users on how to process machine-readable metadata that is based on this vocabulary
+
 ## Related Work
 
 There are several existing vocabularies cover similar goals, but all have their limitations. The Open Data Rights Statement vocabulary builds on this earlier work to support clearer publication of rights information.
