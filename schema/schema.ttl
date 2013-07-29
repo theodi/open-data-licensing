@@ -102,6 +102,13 @@ odrs:copyrightStatement
     rdfs:domain odrs:RightsStatement;
     rdfs:range foaf:Document.
 
+odrs:compatibleWith
+    a owl:ObjectProperty;
+    rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
+    rdfs:label "compatible with"@en;
+    rdfs:comment """This property is used to indicates that one license is compatible with another. A re-use that meets the requirements, permissions and prohibitions of the first license should also meet the requirements, permissions and prohibitions of the second, compatible license. The inverse is not necessarily true: the compatible license might have stricter requirements. This statement can be used as an indicator that a re-user could publish a derivative dataset under the compatible license, e.g. to help drive automated selection and guidance licenses for publishers of derived data. However it is not a substitute for properly reading and understanding the text of either license."""@en;    
+    rdfs:domain odrs:License;
+    rdfs:range odrs:License.
 
 ############################################################################
 # Datatype Properties
