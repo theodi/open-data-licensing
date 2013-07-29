@@ -21,8 +21,10 @@ There are several existing vocabularies cover similar goals, but all have their 
 * [Dublin Core](http://dublincore.org/documents/dcmi-terms/) distinguishes between a licence (`dct:License`) and a rights statement (`dct:RightsStatement`) and provides terms for relating a work to a machine-readable descriptions of these documents using the `dct:rights` and `dct:license` properties.
 * The [Creative Commons vocabulary](http://creativecommons.org/ns) (ccRel) supports the publication of machine-readable descriptions of broad classes of requirements, permissions and prohibitions that are associated with licences. It also includes some terms to support attribution.
 * The [Waiver](http://vocab.org/waiver/terms/.html) vocabulary supports the association of public domain waivers and community norms with a dataset
+* The [Open Data Rights Language](http://www.w3.org/community/odrl/) (ODRL) provides a standard means for expressing policies relating to the publishing, distribution and consumption of digital media.
+* Similarly, the [L4LOD](http://ns.inria.fr/l4lod/v2/l4lod_v2.html) and [LIMO](http://data.opendataday.it/LiMo/) vocabularies also attempt to describe the essential aspects of individual licenses
 
-These vocabularies provide some necessary foundations for publishing rights statements, but each has its own limitations
+These vocabularies provide some of the necessary foundations for publishing rights statements, but each has its own limitations. As described in the next section, the ODRS vocabulary is intended to support the publication of "rights statements" that annotate the relationship between a dataset and its license information.
 
 ## Design Rationale
 
@@ -47,11 +49,21 @@ A Rights Statement might apply to an individual Dataset. But it could equally be
 
 The vocabulary does not provide a definition of dataset. This is intentionally under-specified to support the use of the vocabulary in a number of ways. The existing [Dublin Core](http://dublincore.org/documents/dcmi-terms/) terms (`dct:rights` and `dct:license`) can be used to relate a dataset to a `odrs:RightsStatement` or a licence.
 
-Similarly, this vocabulary intentionally does not attempt to support the machine-readable description of the terms of a specific license. This is already adequately covered by the [ccRel](http://creativecommons.org/ns) vocabulary.
+Similarly, this vocabulary intentionally does not attempt to support the machine-readable description of the terms of a specific license. This is already adequately covered by the [ccRel](http://creativecommons.org/ns) and [ODRL](http://www.w3.org/community/odrl/) vocabularies. 
+
+The ODRS vocabulary is aimed at supporting a simple, common case of publishing open data using standard licenses. However it is compatible with efforts to create machine-readable expressions of licenses and policies. Additional notes on the [use cases that have guided the design of the vocabulary](https://github.com/theodi/open-data-licensing/wiki/Use-cases) can be found in the project wiki.
 
 ## Schema Diagram
 
 The following diagram shows the key resources, relationships and properties defined by this vocabulary.
 
 ![Schema diagram](diagram.png)
+
+## Recent Changes
+
+For a full history of changes view [the source files in github](https://github.com/theodi/open-data-licensing/tree/master/schema).
+
+The following lists highlights some of the key recent changes:
+
+* 29/07/2013 -- Added links to L4LOD, LIMO and ODRL vocabularies in the Related Work section and links to Use Cases.
 
