@@ -20,7 +20,7 @@
     rdfs:label "Open Data Rights Statement Vocabulary";
     rdfs:comment """A vocabulary that supports the publication of Open Data by providing the means to capture machine-readable "rights statements", e.g. the licensing information, copyright notices and attribution requirements that are associated with the publication and re-use of a dataset.""";
     dct:created "2013-05-31"^^xsd:date;
-    dct:modified "2013-06-17"^^xsd:date;
+    dct:modified "2013-07-29"^^xsd:date;
     foaf:maker <http://www.ldodds.com#me>.
 
 <http://www.ldodds.com#me> a foaf:Person ;
@@ -54,7 +54,7 @@ odrs:dataLicense
     a owl:ObjectProperty;
     rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
     rdfs:label "data license"@en;
-    rdfs:comment "Indicates which data licence is applicable to the dataset(s) referencing a rights statement."@en;
+    rdfs:comment """This property is used to indicate which license covers reuse of the dataset(s) associated with this rights statement object. Typically this license will refer to a standard open license, e.g. as published by Creative Commons or Open Data Commons. The value of the property will be the URI of the license that is being applied to the data"""@en;
     rdfs:subPropertyOf dct:license;
     rdfs:domain odrs:RightsStatement;
     rdfs:range odrs:License.
@@ -63,7 +63,7 @@ odrs:contentLicense
     a owl:ObjectProperty;
     rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
     rdfs:label "content license"@en;
-    rdfs:comment "Indicates which content licence is applicable to the dataset(s) referencing a rights statement"@en;
+    rdfs:comment """The contents of a database might be covered by a separate license, e.g. a database containing copyrightable material (e.g. text, images) might have different rights for the dataset and the contents. This property can be used to refer to a license that applies to the content of the dataset. In some cases the same license can be applied to both content and data, but in others a data publisher may choose to use a separate license for content. The value of the property will be the URI of the license that is being applied to the content."""@en;
     rdfs:subPropertyOf dct:license;
     rdfs:domain odrs:RightsStatement;
     rdfs:range odrs:License.
