@@ -72,5 +72,6 @@ For a full history of changes view [the source files in github](https://github.c
 
 The following lists highlights some of the key recent changes:
 
+* 29/07/2013 -- Added `compatibleWith` property
 * 29/07/2013 -- Added links to L4LOD, LIMO and ODRL vocabularies in the Related Work section and links to Use Cases.
 
