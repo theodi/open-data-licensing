@@ -110,6 +110,37 @@ odrs:compatibleWith
     rdfs:domain odrs:License;
     rdfs:range odrs:License.
 
+odrs:databaseRightStatement
+    a owl:ObjectProperty;
+    rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
+    rdfs:label "database right statement"@en;
+    rdfs:comment """A link to a document that includes a statement about the database rights that apply to this dataset. The web page might include both a statement on the applicable rights and any relevant guidance for re-users."""@en;    
+    rdfs:domain odrs:RightsStatement;
+    rdfs:range foaf:Document.
+
+odrs:copyrightHolder
+    a owl:ObjectProperty;
+    rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
+    rdfs:label "copyright holder"@en;
+    rdfs:comment """A reference to the organization that holds copyright over the content of the dataset"""@en;    
+    rdfs:domain odrs:RightsStatement;
+    rdfs:range foaf:Organization.
+
+odrs:databaseRightHolder
+    a owl:ObjectProperty;
+    rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
+    rdfs:label "database right holder"@en;
+    rdfs:comment """A reference to the organization that holds database rights over the dataset"""@en;    
+    rdfs:domain odrs:RightsStatement;
+    rdfs:range foaf:Organization.
+
+odrs:jurisdiction
+    a owl:ObjectProperty;
+    rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
+    rdfs:label "jurisdiction"@en;
+    rdfs:comment """A reference to the jurisdiction in which copyright and/or database rights have been asserts. It is recommended that this refer to the URI for a country or region."""@en;    
+    rdfs:domain odrs:RightsStatement.
+
 ############################################################################
 # Datatype Properties
 ############################################################################
@@ -129,4 +160,20 @@ odrs:attributionText
     rdfs:comment "The text to use in an attribution link. This may be the name of the publisher or a reference to a community or group of contributors"@en;    
     rdfs:range rdfs:Literal;
     rdfs:domain odrs:RightsStatement.
+
+odrs:copyrightYear
+     a owl:DatatypeProperty;
+     rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
+     rdfs:label "copyright year"@en;
+     rdfs:comment """The year from which copyright over the content of the dataset is asserted."""@en;    
+     rdfs:range rdfs:Literal;
+     rdfs:domain odrs:RightsStatement.
+
+odrs:databaseRightYear
+     a owl:DatatypeProperty;
+     rdfs:isDefinedBy <http://schema.theodi.org/odrs>;
+     rdfs:label "database right year"@en;
+     rdfs:comment """The year from which a database right over the dataset is asserted."""@en;    
+     rdfs:range rdfs:Literal;
+     rdfs:domain odrs:RightsStatement.
 
