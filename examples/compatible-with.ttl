@@ -1,0 +1,8 @@
+@prefix odrs: <http://schema.theodi.org/odrs#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+#Note: text of OGLv2.0 says compatible with CC-BY 4.0.
+#Example makes assumption about URI of this license (which is not yet formally published)
+<http://reference.data.gov.uk/id/open-government-licence>
+    odrs:compatibleWith <http://opendatacommons.org/licenses/by/>;
+    odrs:compatibleWith <http://creativecommons.org/licenses/by/4.0/>.
