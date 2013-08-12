@@ -10,7 +10,7 @@ This document gathers together pointers and discussion on existing work in this 
 
 **Note**: This document has not been created by a legal expert and its contents should not be taken as legal guidance. When in doubt, consult the terms of the specific licenses that apply to the datasets you are using. Legal input/review is welcomed.
 
-This document is intended to provide guidance and discussion on mixing together data that may be published under different licences. It does not provide a general background on data licences or choosing and applying licences. The Open Data Institute have produced two guide that provide useful background reading for this document:
+This document is intended to provide guidance and discussion on mixing together data that may be published under different licences. It does not provide a general background on data licences or choosing and applying licences. The Open Data Institute have produced two guides that provide useful background reading for this document:
 
 * [Publisher's Guide to Open Data Licensing](http://theodi.org/guide/publishers-guide-open-data-licensing) -- the sections "What Do You Own", and "What Are Open Licenses" are particularly relevant
 * [Reuser's Guide to Open Data Licensing](http://theodi.org/guide/reusers-guide-open-data-licensing) -- the section "What Can't You Do" is relevant to the process of creating and using licensed data.
@@ -25,7 +25,7 @@ The Creative Commons (CC) [define licenses as compatible](http://creativecommons
 
 However to date the Creative Commons have not yet [officially approved](http://creativecommons.org/compatiblelicenses) any licenses as being compatible.
 
-This article on [copyleft and license compatibility](http://opensource.com/law/11/9/mpl-20-copyleft-and-license-compatibility) provides some good background, noting that:
+[This article on copyleft and license compatibility](http://opensource.com/law/11/9/mpl-20-copyleft-and-license-compatibility) provides some good background, noting that:
 
 > "compatible" generally means "one-way" compatibility, where code from a more permissive license can be used as part of a project whose overall license is more restrictive, but not vice versa
 
@@ -45,10 +45,10 @@ Within the Creative Commons suite of licenses the stance to [compatibility has c
 
 ## Who Defines Compatibility?
 
-While this document attempts to provide some guidance on compatibility between licences a clear definition on licence compatibility can come from one of two places:
+While this document attempts to provide some guidance on compatibility between licences, a clear definition on licence compatibility can come from one of two places:
 
 * The Licence Author -- as noted above, the Creative Commons are intending to publish a list of compatible licences; the [Open Government License 2.0](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/) explicitly identifies several compatible licences
-* The Publisher -- a publisher can release data under more than one licence or document which licences they consider to be compatible with their goals to publish and share data. The [Open Database Licence](http://opendatacommons.org/licenses/odbl/1.0/) states that publishers can designate a proxy who will determine whether licences are compatible
+* The Publisher -- a publisher can release data under more than one licence, or declare which licences they consider to be compatible with their goals to publish and share data. The [Open Database Licence](http://opendatacommons.org/licenses/odbl/1.0/) states that publishers can designate a proxy who will determine whether licences are compatible
 
 Ultimately while a legal perspective can be taken on whether the terms of two licences are compatible, it is the publisher who will have the final decision as they retain rights in their data.
 
