@@ -142,3 +142,13 @@ Additional work needs to be undertaken to explore these issues further. For exam
 The matrices could also be used to create tools, like the [CC License Compatibility Wizard](http://www.web2rights.com/OERIPRSupport/creativecommons/), to help both publishers and re-users to understand the impacts of particular licensing conditions.
 
 It is important that this work addresses all licences that re-users are likely to encounter, e.g from the Creative Commons, Open Data Commons and various government licensing agencies. While convergence on common licenses will hopefully continue, re-users are likely to be operating in a "mixed economy" for some time.
+
+## Summary of Tables
+
+* **[Table 1](https://docs.google.com/spreadsheet/pub?key=0AiswT8ko8hb4dEJ6VVhYamlNMWo5WHpSV3IzVzAtZkE&single=true&gid=0&output=html)** -- summarises key facets of common open licenses
+* **[Table 2](https://docs.google.com/spreadsheet/pub?key=0AiswT8ko8hb4dEJ6VVhYamlNMWo5WHpSV3IzVzAtZkE&single=true&gid=1&output=html)** -- indicates which licences can be used when publishing simple single-source derivatives
+* **[Table 3](https://docs.google.com/spreadsheet/pub?key=0AiswT8ko8hb4dEJ6VVhYamlNMWo5WHpSV3IzVzAtZkE&single=true&gid=2&output=html)** -- provides a matrix that indicates the "minimum" licence that can be applied when publishing derivatives created from 2 or more datasets
+
+The tables are held in a single Google spreadsheet. You can [comment directly on the spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AiswT8ko8hb4dEJ6VVhYamlNMWo5WHpSV3IzVzAtZkE&usp=sharing) to make comments or highlight issues.
+
+
