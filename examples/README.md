@@ -8,6 +8,7 @@ This directory includes complete copies of the examples from the publisher guide
 
 ## List of Examples
 
+* `compatible-with.ttl` -- Using the `odrs:compatibleWith` property to indicate [compatibility between licenses](https://github.com/theodi/open-data-licensing/blob/master/guides/licence-compatibility.md)
 * `copyright-notice.ttl` -- Publishing a copyright notice in Turtle
 * `mixing-odrs-with-ccrel.ttl` -- Illustrates how to use ODRS in combination with the [ccRel](http://creativecommons.org/ns) vocabulary to describe attributes of non-standard licenses.
 * `multiple-licenses.ttl` -- Using both `odrs:dataLicense` and `odrs:contentLicense` properties in Turtle
