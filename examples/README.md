@@ -15,6 +15,7 @@ This directory includes complete copies of the examples from the publisher guide
 * `os.ttl` -- describing the Ordnance Survey Linked Data using ODRS
 * `rdfa-cc0.html` -- example of a rights statement that uses the CC0 waiver, allowing a data publisher to waive all rights over their dataset
 * `rdfa-copyright-notice.html` -- copyright notice in RDFa
+* `rdfa-copyright-notice-extended.html` -- extended version of the above example, including properties to describe the rights holder and year in which rights are claimed
 * `rdfa-copyright-statement.html` -- refering to a copyright statement published elsewhere on the web
 * `rdfa-public-domain.html` -- marking a dataset with the Creative Common Public Domain Mark, allowing works that are already in the public domain to be associated with a license (waiver)
 * `rdfa-single-license.html` -- simple example of ODRS marked up with RDFa
