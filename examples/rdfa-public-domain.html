@@ -1,0 +1,31 @@
+<html prefix="dct: http://purl.org/dc/terms/
+              rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+              dcat: http://www.w3.org/ns/dcat#
+     odrs: http://schema.theodi.org/odrs#">
+    
+    <body>
+        <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/example">
+            <h1 property="dct:title">Public Domain Dataset</h1>                      
+
+            <div property="dct:rights" resource="#rights" typeof="odrs:RightsStatement">
+                <h2 property="rdfs:label">Rights Statement</h2>
+                <p>This work is known to be in the public domain. As described in the
+                    <a href="http://creativecommons.org/publicdomain/mark/1.0/" 
+                        property="odrs:dataLicense">Public Domain Mark 1.0
+                    </a> its use is free from restrictions
+                </p>
+
+            </div>
+
+            <div property="dct:license" 
+                 resource="http://creativecommons.org/publicdomain/mark/1.0/">
+                <a href="http://creativecommons.org/publicdomain/mark/1.0/">
+                    Public Domain Mark 1.0
+                </a>
+            </div>
+
+            <!-- additional markup with further description of dataset -->
+        </div>        
+    </body>
+</html>
+
