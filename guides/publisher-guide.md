@@ -73,6 +73,8 @@ The ODRS vocabulary provides two terms to support publishing in describing means
 * `attributionText` -- the text to be used when attributing the creator of some data. Typically this will just be the name of your organization, e.g. your company or government department. However it might also be a more general phrase. E.g. a crowd-sourced dataset might use `attributionText` of: "_Wikipedia Community_". You can use this property to specify the attribution text you would like data re-users to use. Without this, re-users will need to decide for themselves how to reference your organisation or dataset. The re-users guide includes some guidance on this.
 * `attributionURL` -- this is the URL to be used when building an attribution link. The expectation is that the link text displayed to a user will be the value of the `attributionText` property. As a data publisher this provides you with the ability to request attribution to a specific web page. While this might be the dataset homepage, or a link to your organization homepage, it may also be a link to a dedicated attribution page. This is particularly useful if you must also acknowledge your data sources. The ability to provide a specific destination page for attribution links also makes it easier to avoid "attribution stacking" issues which can make attribution and re-use difficult.
 
+#### Guidance on Defining Attribution Statements
+
 Publishers should keep attribution text as short as possible, recognising that their data may get re-used in a wide variety of locations. The following are all good examples of attribution text:
 
 * _My Organization_
@@ -95,7 +97,7 @@ The goal of the ODRS vocabulary, and for machine-readable dataset metadata in ge
 
 Copyright notices are another important item of metadata that might usefully be added to a rights statement. Some open licenses, particularly those from the Creative Commons state that re-users should display any copyright notices provided by publishers.
 
-If you hold copyright over some part of your dataset, you may wish to publish a copyright notice for re-users. This can be useful as it will support re-users in displaying or referencing a copyright notice or preserving a notice when redistributing data, if this is allowed by your data license.
+If you hold copyright over some part of your dataset, you may wish to publish a copyright notice for re-users. This can be useful as it will support re-users in displaying or referencing a copyright notice in their applications. Similarly it will support re-users preserving a copyright notice when redistributing data, if this is allowed by your data license.
 
 The ODRS vocabulary includes two terms for capturing copyright notice information:
 
@@ -103,6 +105,8 @@ The ODRS vocabulary includes two terms for capturing copyright notice informatio
 * `copyrightStatement` -- this property allows you specify a URL for the copyright statement. This can be used an alternative to `copyrightNotice`, instead providing a link to a web page that describes the copyright status of the dataset and any relevant notices. A re-user would link to this page, rather than including your copyright notice. This can be useful if your copyright notices are lengthy, e.g. if you have to reference several sources.
 
 As a general guide you should keep your copyright notices short and the text should be distinct from your `attributionText`. Wikipedia includes some notes on the [technical requirements for copyright notices](http://en.wikipedia.org/wiki/Copyright_notice#Technical_requirements) and there is generally specific advice available from your national copyright agency. See for example [guidance from the UK Copyright Service](http://www.copyrightservice.co.uk/copyright/p03_copyright_notices) and [the US Copyright Office](http://www.copyright.gov/circs/circ03.pdf).
+
+#### Guidance on Defining Copyright Notices
 
 Generally, unless there is specific guidance that applies to your organisation or region, then it is recommended that a copyright notice consist of:
 
@@ -120,6 +124,20 @@ For example an `attributionText` of _Dept of Data_ and _© Crown copyright 2013_
 * To create a phrase to be added in a web page footer: _Uses data from Dept. of Data. © Crown copyright 2013_
 * To build an attribution link for a data element on a page (_Data from Dept. of Data_), whilst the copyright statement is referenced in the footer of the page (_© Crown copyright 2013. Dept of Data_)
 * The developer could create a simplified attribution statement that combined attribution text and copyright notices from  multiple sources, e.g. _Uses data from Dept. of Data and Ministry of Facts. © Crown copyright 2013_
+
+#### Additional Copyright Information 
+
+The ODRS vocabulary also provides some additional properties for capturing some finer-grained detail about copyright and database rights. These properties are intended to support some additional use cases beyond simple displaying a publisher provided copyright notice, e.g:
+
+* Automatically creating a copyright notice based on the outline given above, useful where several notices may need to be combined or reformatted
+* Analysing datasets to understand which organisation publish data and hold rights over it
+* Filtering datasets during a dataset discovery process
+
+There are five additional properties:
+
+* `copyrightYear` and `databaseRightYear` to specify the year in which copyright (or database right) is claimed
+* `copyrightHolder` and `databaseRightHolder` to refer to the organization(s) that hold copyright (or database right) over the content of a dataset
+* `jurisdiction` to refer to the jurisdiction within which these rights are claimed.
 
 ## Using the ODRS Vocabulary
 
@@ -312,7 +330,45 @@ The ODRS vocabulary captures copyright information separately to attribution tex
 
 The Rights Statement includes a `odrs:copyrightNotice` property in addition to the attribution properties used in the previous examples. An application might choose to display the copyright notice differently to the attribution text, e.g. including it in a general copyright notice section of the application website or in a copyright statement document included in a re-distributed version of the dataset.
 
-In some cases it may be more suitable to provide a link to a copyright statement, e.g. if the text of the copyright notice is lengthy or subject to change. In this case the `odrs:copyrightStatement` property can be used instead. The following rights statement illustrates use of this property:
+More fine-grained metadata about the copyright and database rights associated with a dataset can be adding using the `odrs:copyrightHolder`, `odrs:copyrightYear` and their database right equivalents. As well as including a complete copyright notice, the following example includes some markup that explicitly states which organisation holds the copyright and database rights, as well as the year in which the rights are claimed:
+
+        <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/example">
+            <h1 property="dct:title">Example Dataset</h1>                      
+
+            <div property="dct:rights" resource="#rights" typeof="odrs:RightsStatement">
+                <h2 property="rdfs:label">Rights Statement</h2>
+                <p>Published under the 
+                    <a href="http://reference.data.gov.uk/id/open-government-licence" 
+                        property="odrs:dataLicense">UK Open Government Licence (OGL)
+                    </a>
+                </p>
+
+
+                <p>© <span property="odrs:copyrightHolder odrs:databaseRightHolder" resource="http://gov.example.org/org/crown">Crown copyright</span> 
+                     <span property="odrs:copyrightYear odrs:databaseRightYear">2013</span>. Example Department</p>
+
+                <p>When re-using or distributing this data please preserve the 
+                   following copyright notice: "
+                    <span property="odrs:copyrightNotice">© Crown copyright 2013. Example Department</span>".
+                </p>
+
+                <!-- attribution statement omitted -->
+
+            </div>
+
+            <div property="dct:license" 
+                 resource="http://reference.data.gov.uk/id/open-government-licence">
+                <a href="http://reference.data.gov.uk/id/open-government-licence">
+                    UK Open Government Licence (OGL)
+                </a>
+            </div>
+
+            <!-- additional markup with further description of dataset -->
+        </div>  
+
+The `odrs:copyrightHolder` and `odrs:databaseRightHolder` properties are used to capture the URI for the organisation that holds the rights over the dataset, while the `odrs:copyrightYear` and `odrs:databaseRightYear` properties specify the year.
+
+In some cases it may be more suitable to provide a link to an external copyright statement, e.g. if the text of the copyright notice is lengthy or subject to change. In this case the `odrs:copyrightStatement` property can be used instead. The following rights statement illustrates use of this property:
 
         <div typeof="dcat:Dataset" resource="http://gov.example.org/dataset/example">
             <h1 property="dct:title">Example Dataset</h1>                      
