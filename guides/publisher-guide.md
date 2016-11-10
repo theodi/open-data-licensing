@@ -246,7 +246,7 @@ The following example dataset includes a Rights Statement that has both the `odr
                 <p>This dataset may be re-used according to the following licenses:</p>
                 <ul>
                     <li>Data Licence: 
-                        <a href="http://opendatacommons.org/licenses/odbl/1.0/">
+                        <a href="http://opendatacommons.org/licenses/odbl/1.0/"
                             property="odrs:dataLicense">Open Database License</a>
                     </li>
                     <li>Content Licence: 
